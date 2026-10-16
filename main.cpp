@@ -1,7 +1,7 @@
 #include <cstdlib>
-#include "ctime"
-#include "model/Fabrica.h"
-#include "view/Ecra.h"
+#include <ctime>
+#include "Fabrica.h"
+#include "VistaFabrica.h"
 
 int main() {
     //srand((unsigned)time(nullptr));
