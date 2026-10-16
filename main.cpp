@@ -1,10 +1,10 @@
 #include <cstdlib>
-#include <ctime>
-#include "Fabrica.h"
-#include "VistaFabrica.h"
+#include "ctime"
+#include "model/Fabrica.h"
+#include "view/Ecra.h"
 
 int main() {
-    srand((unsigned)time(nullptr));
+    //srand((unsigned)time(nullptr));
     if (!Fabrica::dimensoesValidas(12, 20)) return 1;
     Fabrica f(12, 20);
     int linhasEcra = (f.getLinhas() + 3 > 8) ? f.getLinhas() + 3 : 8;

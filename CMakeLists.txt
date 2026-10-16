@@ -7,12 +7,10 @@ add_executable(TP_POO main.cpp
         Settings.h
         view/Ecra.cpp
         view/Ecra.h
-        model/fabrica.cpp
-        model/fabrica.h
-        model/posicao.cpp
+        model/Fabrica.habrica.cpp
+        model/Fabrica.h
+        model/posico.cpp
         model/posicao.h
-        "controller/Simulador.cpp"
-        "controller/Simulador.h"
         model/cordenada.cpp
         model/cordenada.h
         model/carregadordemapa.cpp
@@ -21,4 +19,7 @@ add_executable(TP_POO main.cpp
         view/Vistafabrica.h
         controller/teste.cpp
         controller/teste.h
+        view/VistaFabrica.cpp
+        view/VistaFabrica.cpp
+        view/VistaFabrica.cpp
 )
