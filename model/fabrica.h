@@ -7,6 +7,7 @@
 
 
 class fabrica {
+          //a;
 };
 
 
