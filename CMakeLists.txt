@@ -7,7 +7,7 @@ add_executable(TP_POO main.cpp
         Settings.h
         view/Ecra.cpp
         view/Ecra.h
-        model/Fabrica.habrica.cpp
+        model/Fabrica.fabrica.cpp
         model/Fabrica.h
         model/posico.cpp
         model/posicao.h
