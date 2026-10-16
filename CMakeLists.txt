@@ -3,4 +3,6 @@ project(TP_POO)
 
 set(CMAKE_CXX_STANDARD 26)
 
-add_executable(TP_POO main.cpp)
+add_executable(TP_POO main.cpp
+        Settings.h
+)
