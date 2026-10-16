@@ -19,4 +19,6 @@ add_executable(TP_POO main.cpp
         model/carregadordemapa.h
         view/Vistafabrica.cpp
         view/Vistafabrica.h
+        controller/teste.cpp
+        controller/teste.h
 )
