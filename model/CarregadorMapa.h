@@ -6,7 +6,7 @@
 #define TP_POO_CARREGADORDEMAPA_H
 
 
-class carregadordemapa {
+class CarregadorMapa {
 };
 
 

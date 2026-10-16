@@ -6,7 +6,7 @@
 #define TP_POO_CORDENADA_H
 
 
-class cordenada {
+class Cordenada {
 };
 
 
