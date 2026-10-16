@@ -11,6 +11,12 @@ add_executable(TP_POO main.cpp
         model/fabrica.h
         model/posicao.cpp
         model/posicao.h
-        "controller/controller.cpp"
-        "controller/controller.h"
+        "controller/Simulador.cpp"
+        "controller/Simulador.h"
+        model/cordenada.cpp
+        model/cordenada.h
+        model/carregadordemapa.cpp
+        model/carregadordemapa.h
+        view/Vistafabrica.cpp
+        view/Vistafabrica.h
 )

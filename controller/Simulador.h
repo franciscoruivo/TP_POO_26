@@ -4,7 +4,7 @@
 
 #ifndef TP_POO_CONTROLLER_H
 #define TP_POO_CONTROLLER_H
-class controller {
+class Simulador {
 
 };
 
