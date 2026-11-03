@@ -1,13 +1,15 @@
-//
-// Created by ruivo on 16/10/26.
-//
+#ifndef COORDENADA_H
+#define COORDENADA_H
 
-#ifndef TP_POO_CORDENADA_H
-#define TP_POO_CORDENADA_H
-
-
+// Um endereço na grelha (linha e coluna, a partir de 0).
+// Não valida limites: quem sabe o tamanho da fábrica é a Fabrica.
 class Coordenada {
+    int linha, coluna;
+
+public:
+    Coordenada(int _linha, int _coluna);
+
+    int getLinha() const { return linha; }
+    int getColuna() const { return coluna; }
 };
-
-
-#endif //TP_POO_CORDENADA_H
+#endif

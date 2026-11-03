@@ -1,29 +1,47 @@
-// VistaFabrica.cpp
 #include "VistaFabrica.h"
-#include <string>
+#include <sstream>
 using namespace std;
 
-void VistaFabrica::desenha(const Fabrica& f, Ecra& ecra) const {
-    int nl = f.getLinhas(), nc = f.getColunas();
-    ecra.limpa();
+int VistaFabrica::linhasEcra(const Fabrica &_f) const {
+    int linhas = _f.getLinhas() + 3; // moldura + régua + moldura
+    if (linhas < ALTURA_PAINEL) linhas = ALTURA_PAINEL;
+    return linhas;
+}
 
-    ecra.moldura(0, 0, nl + 3, nc + 3);
+int VistaFabrica::colunasEcra(const Fabrica &_f) const {
+    return _f.getColunas() + 4 + LARGURA_PAINEL;
+}
+
+string VistaFabrica::linhaPainel(const string &_rotulo, int _valor) const {
+    ostringstream out;
+    out << _rotulo << _valor;
+    return out.str();
+}
+
+void VistaFabrica::desenha(const Fabrica &_f, Ecra &_ecra) const {
+    int nl = _f.getLinhas();
+    int nc = _f.getColunas();
+    _ecra.limpa();
+
+    // fábrica: moldura, régua e terreno
+    _ecra.moldura(0, 0, nl + 3, nc + 3);
     for (int c = 0; c < nc; c++)
-        ecra.escreve(1, 2 + c, (char)('A' + c));           // régua das colunas
+        _ecra.escreve(1, 2 + c, static_cast<char>('A' + c));
     for (int l = 0; l < nl; l++) {
-        ecra.escreve(2 + l, 1, (char)('A' + l));           // régua das linhas
+        _ecra.escreve(2 + l, 1, static_cast<char>('A' + l));
         for (int c = 0; c < nc; c++) {
-            char t = f.getPosicao(l, c).getTipo();
-            if (t == '.') t = ' ';                          // solo desenha-se vazio
-            ecra.escreve(2 + l, 2 + c, t);
+            char tipo = _f.getPosicao(Coordenada(l, c)).getTipo();
+            if (tipo == '.') tipo = ' '; // solo desenha-se vazio
+            _ecra.escreve(2 + l, 2 + c, tipo);
         }
     }
 
-    int col = nc + 4;                                       // painel de estado
-    ecra.moldura(0, col, 8, 34);
-    ecra.escreve(1, col + 2, "Instante: " + to_string(f.getInstante()));
-    ecra.escreve(2, col + 2, "Creditos: " + to_string(f.getCreditos()));
-    ecra.escreve(3, col + 2, "Maquinas: 0");
-    ecra.escreve(4, col + 2, "Engenheiros: 0");
-    ecra.escreve(6, col + 2, "No ultimo instante:");
+    // painel de estado
+    int col = nc + 4;
+    _ecra.moldura(0, col, ALTURA_PAINEL, LARGURA_PAINEL);
+    _ecra.escreve(1, col + 2, linhaPainel("Instante: ", _f.getInstante()));
+    _ecra.escreve(2, col + 2, linhaPainel("Creditos: ", _f.getCreditos()));
+    _ecra.escreve(3, col + 2, linhaPainel("Maquinas: ", _f.getNumMaquinas()));
+    _ecra.escreve(4, col + 2, linhaPainel("Engenheiros: ", _f.getNumEngenheiros()));
+    _ecra.escreve(6, col + 2, "No ultimo instante:");
 }
