@@ -14,8 +14,9 @@ class Fabrica {
     void colocaAleatorios(char _tipo, int _quantos);
 
 public:
+    Fabrica(); // fábrica vazia (ainda não criada)
     Fabrica(int _linhas, int _colunas); // aleatória (comando fabrica)
-    explicit Fabrica(const std::string &_nomeFicheiro); // a partir de mapa (comando carrega)
+    Fabrica(const std::string &_nomeFicheiro); // a partir de mapa (comando carrega)
 
     static bool dimensoesValidas(int _linhas, int _colunas);
 

@@ -5,60 +5,65 @@
 #include "VistaFabrica.h"
 using namespace std;
 
+Simulador::Simulador() : fabrica(), criada(false), erro() {
+}
+
 bool Simulador::criaFabrica(int _linhas, int _colunas) {
-    if (fabrica) {
+    if (criada) {
         erro = "A fabrica ja foi criada";
         return false;
     }
     try {
-        fabrica = make_unique<Fabrica>(_linhas, _colunas);
+        fabrica = Fabrica(_linhas, _colunas);
     } catch (const invalid_argument &e) {
         erro = e.what();
         return false;
     }
+    criada = true;
     return true;
 }
 
 bool Simulador::carregaFabrica(const string &_ficheiro) {
-    if (fabrica) {
+    if (criada) {
         erro = "A fabrica ja foi criada";
         return false;
     }
     try {
-        fabrica = make_unique<Fabrica>(_ficheiro);
+        fabrica = Fabrica(_ficheiro);
     } catch (const invalid_argument &e) {
         erro = e.what();
         return false;
     }
+    criada = true;
     return true;
 }
 
 void Simulador::mostra() const {
-    if (!fabrica) return;
+    if (!criada) return;
     VistaFabrica vista;
-    Ecra ecra(vista.linhasEcra(*fabrica), vista.colunasEcra(*fabrica));
-    vista.desenha(*fabrica, ecra);
+    Ecra ecra(vista.linhasEcra(fabrica), vista.colunasEcra(fabrica));
+    vista.desenha(fabrica, ecra);
     ecra.mostra();
 }
 
 bool Simulador::coordenadaValida(const Coordenada &_c) const {
-    return fabrica && fabrica->coordenadaValida(_c);
+    return criada && fabrica.coordenadaValida(_c);
 }
 
 string Simulador::lposicao(const Coordenada &_centro, int _raio) const {
     ostringstream out;
-    if (!fabrica) return out.str();
+    if (!criada) return out.str();
 
-    int maximo = fabrica->getLinhas();
-    if (fabrica->getColunas() > maximo) maximo = fabrica->getColunas();
+    int maximo = fabrica.getLinhas();
+    if (fabrica.getColunas() > maximo) maximo = fabrica.getColunas();
     if (_raio > maximo) _raio = maximo; // mais do que isto já cobre tudo
 
     for (int l = _centro.getLinha() - _raio; l <= _centro.getLinha() + _raio; l++) {
         for (int c = _centro.getColuna() - _raio; c <= _centro.getColuna() + _raio; c++) {
             Coordenada atual(l, c);
-            if (fabrica->coordenadaValida(atual)) // o que sai da fábrica é cortado
+            if (fabrica.coordenadaValida(atual)) // o que sai da fábrica é cortado
                 out << textoCoordenada(atual) << ": "
-                        << fabrica->getPosicao(atual).obterDescricao() << "\n";
+                        << fabrica.getPosicao(atual).obterDescricao() << "\n";
         }
     }
     return out.str();
@@ -75,7 +80,9 @@ bool Simulador::converteCoordenada(const string &_texto, Coordenada &_resultado)
 
 string Simulador::textoCoordenada(const Coordenada &_c) {
     string texto;
-    texto += static_cast<char>('a' + _c.getLinha());
-    texto += static_cast<char>('a' + _c.getColuna());
+    char l = 'a' + _c.getLinha();
+    char c = 'a' + _c.getColuna();
+    texto += l;
+    texto += c;
     return texto;
 }

@@ -1,16 +1,18 @@
 #ifndef SIMULADOR_H
 #define SIMULADOR_H
-#include <memory>
 #include <string>
 #include "Coordenada.h"
 #include "Fabrica.h"
 
 class Simulador {
-    std::unique_ptr<Fabrica> fabrica; // só existe depois de fabrica/carrega
+    Fabrica fabrica; // vazia até ser criada (fabrica/carrega)
+    bool criada;
     std::string erro;
 
 public:
-    bool temFabrica() const { return fabrica != nullptr; }
+    Simulador();
+
+    bool temFabrica() const { return criada; }
     const std::string &getErro() const { return erro; }
 
     bool criaFabrica(int _linhas, int _colunas);

@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-Ecra::Ecra(int _l, int _c) : buffer{}, linhas(_l), colunas(_c), linhaCursor(0), colunaCursor(0) {
+Ecra::Ecra(int _l, int _c) : linhas(_l), colunas(_c), linhaCursor(0), colunaCursor(0) {
     if (linhas < 0) linhas = 0;
     if (colunas < 0) colunas = 0;
     if (linhas > Settings::ecra_max_linhas) linhas = Settings::ecra_max_linhas;

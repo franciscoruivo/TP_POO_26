@@ -25,10 +25,13 @@ void VistaFabrica::desenha(const Fabrica &_f, Ecra &_ecra) const {
 
     // fábrica: moldura, régua e terreno
     _ecra.moldura(0, 0, nl + 3, nc + 3);
-    for (int c = 0; c < nc; c++)
-        _ecra.escreve(1, 2 + c, static_cast<char>('A' + c));
+    for (int c = 0; c < nc; c++) {
+        char letra = 'A' + c;
+        _ecra.escreve(1, 2 + c, letra); // régua das colunas
+    }
     for (int l = 0; l < nl; l++) {
-        _ecra.escreve(2 + l, 1, static_cast<char>('A' + l));
+        char letra = 'A' + l;
+        _ecra.escreve(2 + l, 1, letra); // régua das linhas
         for (int c = 0; c < nc; c++) {
             char tipo = _f.getPosicao(Coordenada(l, c)).getTipo();
             if (tipo == '.') tipo = ' '; // solo desenha-se vazio

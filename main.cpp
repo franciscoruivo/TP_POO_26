@@ -8,27 +8,30 @@ using namespace std;
 // criação da fábrica (aleatória e por ficheiro), apresentação, lposicao (terreno) e fim.
 // NÃO interpreta comandos escritos: isso é o CP2 (hierarquia Comando).
 
-static bool lerLinha(const string &pergunta, string &linha) {
+bool lerLinha(const string &pergunta, string &linha) {
     cout << pergunta;
-    return static_cast<bool>(getline(cin, linha));
+    if (getline(cin, linha)) return true;
+    return false;
 }
 
-static bool lerInteiro(const string &pergunta, int &valor) {
+bool lerInteiro(const string &pergunta, int &valor) {
     string linha;
     if (!lerLinha(pergunta, linha)) return false;
     istringstream entrada(linha);
     string sobra;
-    return static_cast<bool>(entrada >> valor) && !(entrada >> sobra); // inteiro e mais nada
+    if (!(entrada >> valor)) return false;
+    if (entrada >> sobra) return false; // mais texto na linha
+    return true;
 }
 
-static void mostraMenu() {
+void mostraMenu() {
     cout << "\n1 - Criar fabrica aleatoria\n"
             << "2 - Carregar fabrica de ficheiro\n"
             << "3 - Listar posicao (lposicao)\n"
             << "0 - Sair (fim)\n";
 }
 
-static void criaAleatoria(Simulador &simulador) {
+void criaAleatoria(Simulador &simulador) {
     if (simulador.temFabrica()) {
         cout << "A fabrica ja foi criada\n";
         return;
@@ -42,7 +45,7 @@ static void criaAleatoria(Simulador &simulador) {
     else cout << simulador.getErro() << "\n";
 }
 
-static void carrega(Simulador &simulador) {
+void carrega(Simulador &simulador) {
     if (simulador.temFabrica()) {
         cout << "A fabrica ja foi criada\n";
         return;
@@ -56,7 +59,7 @@ static void carrega(Simulador &simulador) {
     else cout << simulador.getErro() << "\n";
 }
 
-static void listaPosicao(const Simulador &simulador) {
+void listaPosicao(const Simulador &simulador) {
     if (!simulador.temFabrica()) {
         cout << "Crie primeiro a fabrica\n";
         return;
@@ -97,7 +100,7 @@ int main() {
         if (opcao == "1") criaAleatoria(simulador);
         else if (opcao == "2") carrega(simulador);
         else if (opcao == "3") listaPosicao(simulador);
-        else if (opcao == "0") break; // fim: o unique_ptr liberta a fábrica
+        else if (opcao == "0") break; // fim: não há nada para libertar à mão
         else cout << "Opcao invalida\n";
     }
     return 0;
