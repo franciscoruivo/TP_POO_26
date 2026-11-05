@@ -1,11 +1,8 @@
 #include "Simulador.h"
 #include <stdexcept>
-#include "Ecra.h"
-#include "VistaFabrica.h"
 using namespace std;
 
-Simulador::Simulador() : fabrica(), criada(false), terminar(false), erro() {
-}
+Simulador::Simulador() : fabrica(), criada(false), terminar(false), erro() {}
 
 bool Simulador::criaFabrica(int _linhas, int _colunas) {
     if (criada) {
@@ -14,7 +11,7 @@ bool Simulador::criaFabrica(int _linhas, int _colunas) {
     }
     try {
         fabrica = Fabrica(_linhas, _colunas);
-    } catch (const invalid_argument &e) {
+    } catch (const invalid_argument& e) {
         erro = e.what();
         return false;
     }
@@ -22,14 +19,14 @@ bool Simulador::criaFabrica(int _linhas, int _colunas) {
     return true;
 }
 
-bool Simulador::carregaFabrica(const string &_ficheiro) {
+bool Simulador::carregaFabrica(const string& _ficheiro) {
     if (criada) {
         erro = "A fabrica ja foi criada";
         return false;
     }
     try {
         fabrica = Fabrica(_ficheiro);
-    } catch (const invalid_argument &e) {
+    } catch (const invalid_argument& e) {
         erro = e.what();
         return false;
     }
@@ -37,15 +34,7 @@ bool Simulador::carregaFabrica(const string &_ficheiro) {
     return true;
 }
 
-void Simulador::mostra() const {
-    if (!criada) return;
-    VistaFabrica vista;
-    Ecra ecra(vista.linhasEcra(fabrica), vista.colunasEcra(fabrica));
-    vista.desenha(fabrica, ecra);
-    ecra.mostra();
-}
-
-bool Simulador::consultaPosicao(const Coordenada &_centro, int _raio, string &_texto) {
+bool Simulador::consultaPosicao(const Coordenada& _centro, int _raio, string& _texto) {
     if (!criada) {
         erro = "Crie primeiro a fabrica";
         return false;

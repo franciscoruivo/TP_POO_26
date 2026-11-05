@@ -5,12 +5,14 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_executable(TP_POO main.cpp
         Settings.h
-        controller/Simulador.cpp
-        controller/Simulador.h
         view/Ecra.cpp
         view/Ecra.h
         view/VistaFabrica.cpp
         view/VistaFabrica.h
+        view/Interface.cpp
+        view/Interface.h
+        model/Simulador.cpp
+        model/Simulador.h
         model/Fabrica.cpp
         model/Fabrica.h
         model/Posicao.cpp
@@ -25,7 +27,6 @@ target_include_directories(TP_POO PRIVATE
         ${CMAKE_SOURCE_DIR}
         ${CMAKE_SOURCE_DIR}/model
         ${CMAKE_SOURCE_DIR}/view
-        ${CMAKE_SOURCE_DIR}/controller
         ${CMAKE_SOURCE_DIR}/util)
 
 target_compile_options(TP_POO PRIVATE -Wall -Wextra -Wpedantic)
