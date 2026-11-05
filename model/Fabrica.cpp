@@ -97,3 +97,20 @@ const Posicao &Fabrica::getPosicao(const Coordenada &_c) const {
     if (!coordenadaValida(_c)) throw out_of_range("Posicao fora da fabrica");
     return grelha[_c.getLinha()][_c.getColuna()];
 }
+
+string Fabrica::obterDescricaoTerreno(const Coordenada &_centro, int _raio) const {
+    ostringstream out;
+    int maximo = linhas;
+    if (colunas > maximo) maximo = colunas;
+    if (_raio < 0) _raio = 0;
+    if (_raio > maximo) _raio = maximo; // mais do que isto já cobre tudo
+
+    for (int l = _centro.getLinha() - _raio; l <= _centro.getLinha() + _raio; l++) {
+        for (int c = _centro.getColuna() - _raio; c <= _centro.getColuna() + _raio; c++) {
+            Coordenada atual(l, c);
+            if (coordenadaValida(atual)) // o que sai da fábrica é cortado
+                out << atual.obterTexto() << ": " << getPosicao(atual).obterDescricao() << "\n";
+        }
+    }
+    return out.str();
+}

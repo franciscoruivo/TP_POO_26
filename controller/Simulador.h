@@ -4,16 +4,14 @@
 #include "Coordenada.h"
 #include "Fabrica.h"
 
+// Contém a fábrica e as funcionalidades que, no checkpoint 2, serão chamadas pelos comandos.
 class Simulador {
-    Fabrica fabrica; // vazia até ser criada (fabrica/carrega)
+    Fabrica fabrica; // vazia até ser criada
     bool criada;
-    std::string erro;
-
+    bool terminar; // condição de saída
+    std::string erro; // motivo da última falha
 public:
     Simulador();
-
-    bool temFabrica() const { return criada; }
-    const std::string &getErro() const { return erro; }
 
     bool criaFabrica(int _linhas, int _colunas);
 
@@ -21,12 +19,12 @@ public:
 
     void mostra() const;
 
-    bool coordenadaValida(const Coordenada &_c) const;
+    bool consultaPosicao(const Coordenada &_centro, int _raio, std::string &_texto);
 
-    std::string lposicao(const Coordenada &_centro, int _raio) const;
+    void fim();
 
-    static bool converteCoordenada(const std::string &_texto, Coordenada &_resultado);
-
-    static std::string textoCoordenada(const Coordenada &_c);
+    bool terminou() const { return terminar; }
+    bool temFabrica() const { return criada; }
+    const std::string &getErro() const { return erro; }
 };
 #endif

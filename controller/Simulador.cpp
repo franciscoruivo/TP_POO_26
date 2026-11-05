@@ -1,11 +1,10 @@
 #include "Simulador.h"
-#include <sstream>
 #include <stdexcept>
 #include "Ecra.h"
 #include "VistaFabrica.h"
 using namespace std;
 
-Simulador::Simulador() : fabrica(), criada(false), erro() {
+Simulador::Simulador() : fabrica(), criada(false), terminar(false), erro() {
 }
 
 bool Simulador::criaFabrica(int _linhas, int _colunas) {
@@ -46,43 +45,23 @@ void Simulador::mostra() const {
     ecra.mostra();
 }
 
-bool Simulador::coordenadaValida(const Coordenada &_c) const {
-    return criada && fabrica.coordenadaValida(_c);
-}
-
-string Simulador::lposicao(const Coordenada &_centro, int _raio) const {
-    ostringstream out;
-    if (!criada) return out.str();
-
-    int maximo = fabrica.getLinhas();
-    if (fabrica.getColunas() > maximo) maximo = fabrica.getColunas();
-    if (_raio > maximo) _raio = maximo; // mais do que isto já cobre tudo
-
-    for (int l = _centro.getLinha() - _raio; l <= _centro.getLinha() + _raio; l++) {
-        for (int c = _centro.getColuna() - _raio; c <= _centro.getColuna() + _raio; c++) {
-            Coordenada atual(l, c);
-            if (fabrica.coordenadaValida(atual)) // o que sai da fábrica é cortado
-                out << textoCoordenada(atual) << ": "
-                        << fabrica.getPosicao(atual).obterDescricao() << "\n";
-        }
+bool Simulador::consultaPosicao(const Coordenada &_centro, int _raio, string &_texto) {
+    if (!criada) {
+        erro = "Crie primeiro a fabrica";
+        return false;
     }
-    return out.str();
-}
-
-bool Simulador::converteCoordenada(const string &_texto, Coordenada &_resultado) {
-    if (_texto.length() != 2) return false;
-    char l = _texto[0];
-    char c = _texto[1];
-    if (l < 'a' || l > 'z' || c < 'a' || c > 'z') return false;
-    _resultado = Coordenada(l - 'a', c - 'a');
+    if (!fabrica.coordenadaValida(_centro)) {
+        erro = "Posicao fora da fabrica";
+        return false;
+    }
+    if (_raio < 0) {
+        erro = "Raio invalido";
+        return false;
+    }
+    _texto = fabrica.obterDescricaoTerreno(_centro, _raio);
     return true;
 }
 
-string Simulador::textoCoordenada(const Coordenada &_c) {
-    string texto;
-    char l = 'a' + _c.getLinha();
-    char c = 'a' + _c.getColuna();
-    texto += l;
-    texto += c;
-    return texto;
+void Simulador::fim() {
+    terminar = true;
 }

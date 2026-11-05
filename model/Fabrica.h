@@ -9,14 +9,14 @@ class Fabrica {
     Posicao grelha[Settings::fabrica_max_linhas][Settings::fabrica_max_colunas];
     int linhas, colunas;
     int creditos, instante;
-    int numMaquinas, numEngenheiros; // no CP1 são sempre 0
+    int numMaquinas, numEngenheiros; // só para o painel; no CP1 são sempre 0
 
     void colocaAleatorios(char _tipo, int _quantos);
 
 public:
-    Fabrica(); // fábrica vazia (ainda não criada)
-    Fabrica(int _linhas, int _colunas); // aleatória (comando fabrica)
-    Fabrica(const std::string &_nomeFicheiro); // a partir de mapa (comando carrega)
+    Fabrica(); // vazia (ainda não criada)
+    Fabrica(int _linhas, int _colunas); // aleatória
+    Fabrica(const std::string &_nomeFicheiro); // a partir de um mapa
 
     static bool dimensoesValidas(int _linhas, int _colunas);
 
@@ -30,5 +30,8 @@ public:
     bool coordenadaValida(const Coordenada &_c) const;
 
     const Posicao &getPosicao(const Coordenada &_c) const; // out_of_range se inválida
+
+    // terreno da posição (e das vizinhas, dentro do quadrado de raio _raio)
+    std::string obterDescricaoTerreno(const Coordenada &_centro, int _raio) const;
 };
 #endif
