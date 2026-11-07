@@ -3,22 +3,17 @@
 #include "Simulador.h"
 #include "VistaFabrica.h"
 
-// Interface com o utilizador: é a única classe que escreve na consola (através do Ecra).
+// Comunica com o utilizador
 class Interface {
-    Simulador &simulador;
+    Simulador& simulador;
     VistaFabrica vista;
 
-    void mostra(const Simulador &_s) const;
-
-    void consulta(Simulador &_s, const Coordenada &_centro, int _raio) const;
-
-    void mostraResultado(Simulador &_s, bool _criou) const;
-
+    void mostra(const Simulador& s) const;
+    void consulta(Simulador& s, const Coordenada& centro, int raio) const;
+    void mostraResultado(Simulador& s, bool criou) const;
     void demonstra();
-
 public:
-    Interface(Simulador &_simulador);
-
+    Interface(Simulador& sim);
     void executa();
 };
 #endif

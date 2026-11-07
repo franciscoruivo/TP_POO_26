@@ -9,16 +9,15 @@ class Fabrica {
     Posicao grelha[Settings::fabrica_max_linhas][Settings::fabrica_max_colunas];
     int linhas, colunas;
     int creditos, instante;
-    int numMaquinas, numEngenheiros; // só para o painel; no CP1 são sempre 0
+    int numMaquinas, numEngenheiros;
 
-    void colocaAleatorios(char _tipo, int _quantos);
-
+    void colocaAleatorios(char tipo, int quantos);
 public:
-    Fabrica(); // vazia (ainda não criada)
-    Fabrica(int _linhas, int _colunas); // aleatória
-    Fabrica(const std::string &_nomeFicheiro); // a partir de um mapa
+    Fabrica();  // vazia (ainda não criada)
+    Fabrica(int nl, int nc); // aleatória
+    Fabrica(const std::string& nomeFicheiro);  // a partir de um mapa
 
-    static bool dimensoesValidas(int _linhas, int _colunas);
+    static bool dimensoesValidas(int nl, int nc);
 
     int getLinhas() const { return linhas; }
     int getColunas() const { return colunas; }
@@ -27,11 +26,10 @@ public:
     int getNumMaquinas() const { return numMaquinas; }
     int getNumEngenheiros() const { return numEngenheiros; }
 
-    bool coordenadaValida(const Coordenada &_c) const;
+    bool coordenadaValida(const Coordenada& c) const;
+    const Posicao& getPosicao(const Coordenada& c) const;   // "out_of_range" se inválida
 
-    const Posicao &getPosicao(const Coordenada &_c) const; // out_of_range se inválida
-
-    // terreno da posição (e das vizinhas, dentro do quadrado de raio _raio)
-    std::string obterDescricaoTerreno(const Coordenada &_centro, int _raio) const;
+    // descrição do terreno do centro e das posições à volta
+    std::string obterDescricaoTerreno(const Coordenada& centro, int raio) const;
 };
 #endif

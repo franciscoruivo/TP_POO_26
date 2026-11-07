@@ -5,15 +5,13 @@
 #include "Fabrica.h"
 
 class VistaFabrica {
-    static const int ALTURA_PAINEL = 8;
-    static const int LARGURA_PAINEL = 34;
+    static const int alturaPainel = 8;
+    static const int larguraPainel = 34;
 
-    std::string linhaPainel(const std::string &_rotulo, int _valor) const;
-
+    std::string linhaPainel(const std::string& rotulo, int valor) const;
 public:
-    int linhasEcra(const Fabrica &_f) const; // tamanho de ecrã necessário
-    int colunasEcra(const Fabrica &_f) const;
-
-    void desenha(const Fabrica &_f, Ecra &_ecra) const;
+    int linhasEcra(const Fabrica& f) const;  // tamanho de ecrã preciso
+    int colunasEcra(const Fabrica& f) const;
+    void desenha(const Fabrica& f, Ecra& ecra) const;
 };
 #endif

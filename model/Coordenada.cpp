@@ -1,7 +1,7 @@
 #include "Coordenada.h"
 using namespace std;
 
-Coordenada::Coordenada(int _linha, int _coluna) : linha(_linha), coluna(_coluna) {}
+Coordenada::Coordenada(int l, int c) : linha(l), coluna(c) {}
 
 string Coordenada::obterTexto() const {
     string texto;

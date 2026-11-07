@@ -4,19 +4,18 @@
 #include "Coordenada.h"
 #include "Fabrica.h"
 
-// Dados e funcionalidade da simulação. Não interage com o utilizador:
-// quem fala com o utilizador é a Interface. No checkpoint 2, será chamado pelos comandos.
+// Guarda os dados
 class Simulador {
-    Fabrica fabrica;                   // vazia até ser criada
+    Fabrica fabrica; // vazia até ser criada
     bool criada;
-    bool terminar;                     // condição de saída
-    std::string erro;                  // motivo da última falha
+    bool terminar; // condição de saída
+    std::string erro; // descrição da última falha
 public:
     Simulador();
 
-    bool criaFabrica(int _linhas, int _colunas);
-    bool carregaFabrica(const std::string& _ficheiro);
-    bool consultaPosicao(const Coordenada& _centro, int _raio, std::string& _texto);
+    bool criaFabrica(int nl, int nc);
+    bool carregaFabrica(const std::string& ficheiro);
+    bool consultaPosicao(const Coordenada& centro, int raio, std::string& texto);
     void fim();
 
     bool terminou() const { return terminar; }

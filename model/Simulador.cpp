@@ -4,13 +4,13 @@ using namespace std;
 
 Simulador::Simulador() : fabrica(), criada(false), terminar(false), erro() {}
 
-bool Simulador::criaFabrica(int _linhas, int _colunas) {
+bool Simulador::criaFabrica(int nl, int nc) {
     if (criada) {
         erro = "A fabrica ja foi criada";
         return false;
     }
     try {
-        fabrica = Fabrica(_linhas, _colunas);
+        fabrica = Fabrica(nl, nc);
     } catch (const invalid_argument& e) {
         erro = e.what();
         return false;
@@ -19,13 +19,13 @@ bool Simulador::criaFabrica(int _linhas, int _colunas) {
     return true;
 }
 
-bool Simulador::carregaFabrica(const string& _ficheiro) {
+bool Simulador::carregaFabrica(const string& ficheiro) {
     if (criada) {
         erro = "A fabrica ja foi criada";
         return false;
     }
     try {
-        fabrica = Fabrica(_ficheiro);
+        fabrica = Fabrica(ficheiro);
     } catch (const invalid_argument& e) {
         erro = e.what();
         return false;
@@ -34,20 +34,20 @@ bool Simulador::carregaFabrica(const string& _ficheiro) {
     return true;
 }
 
-bool Simulador::consultaPosicao(const Coordenada& _centro, int _raio, string& _texto) {
+bool Simulador::consultaPosicao(const Coordenada& centro, int raio, string& texto) {
     if (!criada) {
         erro = "Crie primeiro a fabrica";
         return false;
     }
-    if (!fabrica.coordenadaValida(_centro)) {
+    if (!fabrica.coordenadaValida(centro)) {
         erro = "Posicao fora da fabrica";
         return false;
     }
-    if (_raio < 0) {
+    if (raio < 0) {
         erro = "Raio invalido";
         return false;
     }
-    _texto = fabrica.obterDescricaoTerreno(_centro, _raio);
+    texto = fabrica.obterDescricaoTerreno(centro, raio);
     return true;
 }
 
