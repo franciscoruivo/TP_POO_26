@@ -7,7 +7,7 @@
 // Guarda os dados
 class Simulador {
     Fabrica fabrica; // vazia até ser criada
-    bool criada;
+    bool criada;  // a Fabrica vazia não diz se já foi criada ou não
     bool terminar; // condição de saída
     std::string erro; // descrição da última falha
 public:

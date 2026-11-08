@@ -2,11 +2,11 @@
 #define FABRICA_H
 #include <string>
 #include "Coordenada.h"
-#include "Posicao.h"
+#include "Celula.h"
 #include "Settings.h"
 
 class Fabrica {
-    Posicao grelha[Settings::fabrica_max_linhas][Settings::fabrica_max_colunas];
+    Celula grelha[Settings::fabrica_max_linhas][Settings::fabrica_max_colunas];
     int linhas, colunas;
     int creditos, instante;
     int numMaquinas, numEngenheiros;
@@ -27,7 +27,7 @@ public:
     int getNumEngenheiros() const { return numEngenheiros; }
 
     bool coordenadaValida(const Coordenada& c) const;
-    const Posicao& getPosicao(const Coordenada& c) const;   // "out_of_range" se inválida
+    const Celula& getPosicao(const Coordenada& c) const;   // "out_of_range" se inválida
 
     // descrição do terreno do centro e das posições à volta
     std::string obterDescricaoTerreno(const Coordenada& centro, int raio) const;

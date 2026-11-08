@@ -8,10 +8,10 @@ class Interface {
     Simulador& simulador;
     VistaFabrica vista;
 
-    void mostra(const Simulador& s) const;
-    void consulta(Simulador& s, const Coordenada& centro, int raio) const;
-    void mostraResultado(Simulador& s, bool criou) const;
-    void demonstra();
+    void mostraFabrica(const Simulador& s) const;
+    void mostraTipoTerreno(Simulador& s, const Coordenada& centro, int raio) const;
+    void mostraFabricaETerreno(Simulador& s, bool criou) const;
+    void demonstraMeta1();
 public:
     Interface(Simulador& sim);
     void executa();

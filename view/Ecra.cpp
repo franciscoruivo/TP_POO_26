@@ -24,7 +24,6 @@ void Ecra::posiciona(int l, int c) {
 }
 
 void Ecra::escreve(char ch) {
-    if (ch == '\n' || ch == '\r') return;  // não entram no buffer
     if (linhaCursor >= 0 && linhaCursor < linhas && colunaCursor >= 0 && colunaCursor < colunas)
         buffer[linhaCursor][colunaCursor] = ch; // fora dos limites: ignora
     colunaCursor++;
@@ -47,14 +46,17 @@ void Ecra::escreve(int l, int c, const string& s) {
 
 void Ecra::moldura(int l, int c, int altura, int largura) {
     if (altura < 1 || largura < 1) return;               // moldura impossível
+    // linhas horizontais
     for (int j = 0; j < largura; j++) {
         escreve(l, c + j, '-');
         escreve(l + altura - 1, c + j, '-');
     }
+    // linhas verticais
     for (int i = 0; i < altura; i++) {
         escreve(l + i, c, '|');
         escreve(l + i, c + largura - 1, '|');
     }
+    // cantos
     escreve(l, c, '+');
     escreve(l, c + largura - 1, '+');
     escreve(l + altura - 1, c, '+');

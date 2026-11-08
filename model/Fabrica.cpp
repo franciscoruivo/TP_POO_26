@@ -15,7 +15,7 @@ bool Fabrica::dimensoesValidas(int nl, int nc) {
                   + Settings::fabrica_num_depositos_silicio + Settings::fabrica_num_depositos_gelo;
     return nl >= 1 && nl <= Settings::fabrica_max_linhas
         && nc >= 1 && nc <= Settings::fabrica_max_colunas
-        && nl * nc > especiais;  // porque tem de sobrar solo livre
+        && nl * nc > especiais;  // porque tem de sobrar solo livre, assim o sorteio termina
 }
 
 Fabrica::Fabrica()
@@ -25,7 +25,7 @@ Fabrica::Fabrica(int nl, int nc)
     : linhas(nl), colunas(nc),
       creditos(Settings::fabrica_creditos_iniciais), instante(0),
       numMaquinas(0), numEngenheiros(0) {
-    if (!dimensoesValidas(nl, nc)) throw invalid_argument("Dimensoes invalidas");
+    if (!dimensoesValidas(nl, nc)) throw invalid_argument("Dimensoes invalidas");  // construtor não devolve valor -> usa execução
     colocaAleatorios('#', Settings::fabrica_num_crateras);
     colocaAleatorios('%', Settings::fabrica_num_depositos_ferro);
     colocaAleatorios('$', Settings::fabrica_num_depositos_silicio);
@@ -57,8 +57,8 @@ Fabrica::Fabrica(const string& nomeFicheiro)
         for (int c = 0; c < nc; c++) {
             char tipo = linha[c];
             int quantidade = 0;
-            if (Posicao::tipoDeposito(tipo)) quantidade = quantidadeAleatoria();
-            if (!grelha[l][c].setTerreno(tipo, quantidade))
+            if (Celula::tipoDeposito(tipo)) quantidade = quantidadeAleatoria();
+            if (!grelha[l][c].definirTerreno(tipo, quantidade))
                 throw invalid_argument("Caractere invalido no mapa");
         }
     }
@@ -67,6 +67,7 @@ Fabrica::Fabrica(const string& nomeFicheiro)
         if (!linha.empty()) throw invalid_argument("Linhas a mais no mapa");
     }
 
+    // Depois de validar -> Guarda as dimensões
     linhas = nl;
     colunas = nc;
 }
@@ -78,8 +79,8 @@ void Fabrica::colocaAleatorios(char tipo, int quantos) {
         int c = Random::getRandom(colunas - 1);
         if (grelha[l][c].getTipo() == '.') {  // só se ainda for solo
             int quantidade = 0;
-            if (Posicao::tipoDeposito(tipo)) quantidade = quantidadeAleatoria();
-            grelha[l][c].setTerreno(tipo, quantidade);
+            if (Celula::tipoDeposito(tipo)) quantidade = quantidadeAleatoria();
+            grelha[l][c].definirTerreno(tipo, quantidade);
             colocados++;
         }
     }
@@ -90,8 +91,8 @@ bool Fabrica::coordenadaValida(const Coordenada& c) const {
         && c.getColuna() >= 0 && c.getColuna() < colunas;
 }
 
-const Posicao& Fabrica::getPosicao(const Coordenada& c) const {
-    if (!coordenadaValida(c)) throw out_of_range("Posicao fora da fabrica");
+const Celula& Fabrica::getPosicao(const Coordenada& c) const {
+    if (!coordenadaValida(c)) throw out_of_range("Celula fora da fabrica"); // Simulador valida antes -> protege contra erros
     return grelha[c.getLinha()][c.getColuna()];
 }
 

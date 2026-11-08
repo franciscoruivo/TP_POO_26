@@ -1,25 +1,25 @@
-#include "Posicao.h"
+#include "Celula.h"
 #include <sstream>
 using namespace std;
 
-Posicao::Posicao() : tipo('.'), quantidade(0) {}
+Celula::Celula() : tipo('.'), quantidade(0) {} // 1º solo -> Depois define o tipo de terreno
 
-bool Posicao::tipoDeposito(char t) {
+bool Celula::tipoDeposito(char t) {
     return t == '%' || t == '$' || t == '~';
 }
 
-bool Posicao::tipoValido(char t) {
+bool Celula::tipoValido(char t) {
     return t == '.' || t == '#' || tipoDeposito(t);
 }
 
-bool Posicao::setTerreno(char novoTipo, int novaQuantidade) {
+bool Celula::definirTerreno(char novoTipo, int novaQuantidade) {
     if (!tipoValido(novoTipo) || novaQuantidade < 0) return false;
     tipo = novoTipo;
     quantidade = tipoDeposito(novoTipo) ? novaQuantidade : 0;
     return true;
 }
 
-string Posicao::obterDescricao() const {
+string Celula::obterDescricao() const {
     ostringstream out;
     switch (tipo) {
         case '#': out << "cratera"; break;

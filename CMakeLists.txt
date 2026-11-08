@@ -15,8 +15,8 @@ add_executable(TP_POO main.cpp
         model/Simulador.h
         model/Fabrica.cpp
         model/Fabrica.h
-        model/Posicao.cpp
-        model/Posicao.h
+        model/Celula.cpp
+        model/Celula.h
         model/Coordenada.cpp
         model/Coordenada.h
         util/Random.cpp
