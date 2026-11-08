@@ -2,6 +2,8 @@
 #include <iostream>
 using namespace std;
 
+// Só a grelha de carateres! Não sabe nada do jogo
+
 Ecra::Ecra(int nl, int nc) : linhas(nl), colunas(nc), linhaCursor(0), colunaCursor(0) {
     if (linhas < 0) linhas = 0;
     if (colunas < 0) colunas = 0;

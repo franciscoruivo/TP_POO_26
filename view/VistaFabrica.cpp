@@ -2,6 +2,8 @@
 #include <sstream>
 using namespace std;
 
+// Envia os dados da fábrica para o ecrã
+
 int VistaFabrica::linhasEcra(const Fabrica& f) const {
     int linhas = f.getLinhas() + 3;
     if (linhas < alturaPainel) linhas = alturaPainel;
@@ -21,17 +23,19 @@ string VistaFabrica::linhaPainel(const string& rotulo, int valor) const {
 void VistaFabrica::desenha(const Fabrica& f, Ecra& ecra) const {
     int nl = f.getLinhas();
     int nc = f.getColunas();
-    ecra.limpa();
+    ecra.limpa(); // começar com um ecrã em branco
 
-    // fábrica: moldura, régua e terreno
-    ecra.moldura(0, 0, nl + 3, nc + 3);
-    for (int c = 0; c < nc; c++) {
+    // Fábrica: moldura, régua e terreno
+    ecra.moldura(0, 0, nl + 3, nc + 3); // moldura
+    for (int c = 0; c < nc; c++) { // régua das colunas
         char letra = 'A' + c;
-        ecra.escreve(1, 2 + c, letra); // régua das colunas
+        ecra.escreve(1, 2 + c, letra);
     }
-    for (int l = 0; l < nl; l++) {
+    for (int l = 0; l < nl; l++) { // régua das linhas
         char letra = 'A' + l;
-        ecra.escreve(2 + l, 1, letra);  // régua das linhas
+        ecra.escreve(2 + l, 1, letra);
+    }
+    for (int l = 0; l < nl; l++) { // faz a grelha dentro das réguas
         for (int c = 0; c < nc; c++) {
             char tipo = f.getPosicao(Coordenada(l, c)).getTipo();
             if (tipo == '.') tipo = ' ';  // solo desenha-se vazio

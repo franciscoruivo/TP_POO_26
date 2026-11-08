@@ -5,6 +5,9 @@
 #include "Ecra.h"
 using namespace std;
 
+
+// Loop de atualização do display visual -> CK2: recebe comandos
+
 // Valores da demonstração
 const int linhasDemo = 12;
 const int colunasDemo = 20;
