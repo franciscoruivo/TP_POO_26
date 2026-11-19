@@ -1,0 +1,10 @@
+carrega mapa1.txt
+compra p ac b
+compra t bc d
+compra t bd b
+compra s cd d
+compra l ce d
+estado
+avanca 10
+estado
+lposicao ac 1

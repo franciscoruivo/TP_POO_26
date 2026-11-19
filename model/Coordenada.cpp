@@ -11,3 +11,12 @@ string Coordenada::obterTexto() const {
     texto += c;
     return texto;
 }
+
+bool Coordenada::converte(const string& texto, Coordenada& resultado) {
+    if (texto.length() != 2) return false;
+    char l = texto[0];
+    char c = texto[1];
+    if (l < 'a' || l > 'z' || c < 'a' || c > 'z') return false;
+    resultado = Coordenada(l - 'a', c - 'a');
+    return true;
+}

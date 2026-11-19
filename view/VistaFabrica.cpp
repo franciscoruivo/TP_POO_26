@@ -37,9 +37,7 @@ void VistaFabrica::desenha(const Fabrica& f, Ecra& ecra) const {
     }
     for (int l = 0; l < nl; l++) { // faz a grelha dentro das réguas
         for (int c = 0; c < nc; c++) {
-            char tipo = f.getPosicao(Coordenada(l, c)).getTipo();
-            if (tipo == '.') tipo = ' ';  // solo desenha-se vazio
-            ecra.escreve(2 + l, 2 + c, tipo);
+            ecra.escreve(2 + l, 2 + c, f.getSimboloPosicao(Coordenada(l, c)));  // máquina ou terreno
         }
     }
 
@@ -51,4 +49,6 @@ void VistaFabrica::desenha(const Fabrica& f, Ecra& ecra) const {
     ecra.escreve(3, col + 2, linhaPainel("Maquinas: ", f.getNumMaquinas()));
     ecra.escreve(4, col + 2, linhaPainel("Engenheiros: ", f.getNumEngenheiros()));
     ecra.escreve(6, col + 2, "No ultimo instante:");
+    for (int i = 0; i < f.getNumEventos(); i++)
+        ecra.escreve(7 + i, col + 2, f.getEvento(i));
 }

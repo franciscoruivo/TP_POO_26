@@ -5,7 +5,7 @@
 #include "Fabrica.h"
 
 class VistaFabrica {
-    static const int alturaPainel = 8;
+    static const int alturaPainel = 12;
     static const int larguraPainel = 34;
 
     std::string linhaPainel(const std::string& rotulo, int valor) const;

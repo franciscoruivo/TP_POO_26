@@ -19,6 +19,20 @@ bool Celula::definirTerreno(char novoTipo, int novaQuantidade) {
     return true;
 }
 
+char Celula::getMateriaPrima() const {
+    if (tipo == '%') return 'f';
+    if (tipo == '$') return 's';
+    if (tipo == '~') return 'g';
+    return ' ';
+}
+
+bool Celula::retiraUnidade() {
+    if (!tipoDeposito(tipo) || quantidade <= 0) return false;
+    quantidade--;
+    if (quantidade == 0) tipo = '.';  // esgotou: passa a solo
+    return true;
+}
+
 string Celula::obterDescricao() const {
     ostringstream out;
     switch (tipo) {

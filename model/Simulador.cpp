@@ -2,44 +2,46 @@
 #include <stdexcept>
 using namespace std;
 
-Simulador::Simulador() : fabrica(), criada(false), terminar(false), erro() {}
+Simulador::Simulador() : fabrica(nullptr), terminar(false), erro() {}
+
+Simulador::~Simulador() {
+    delete fabrica;
+}
 
 bool Simulador::criaFabrica(int nl, int nc) {
-    if (criada) {
+    if (fabrica != nullptr) {
         erro = "A fabrica ja foi criada";
         return false;
     }
     try {
-        fabrica = Fabrica(nl, nc);
+        fabrica = new Fabrica(nl, nc);
     } catch (const invalid_argument& e) {
         erro = e.what();
         return false;
     }
-    criada = true;
     return true;
 }
 
 bool Simulador::carregaFabrica(const string& ficheiro) {
-    if (criada) {
+    if (fabrica != nullptr) {
         erro = "A fabrica ja foi criada";
         return false;
     }
     try {
-        fabrica = Fabrica(ficheiro);
+        fabrica = new Fabrica(ficheiro);
     } catch (const invalid_argument& e) {
         erro = e.what();
         return false;
     }
-    criada = true;
     return true;
 }
 
 bool Simulador::consultaPosicao(const Coordenada& centro, int raio, string& texto) {
-    if (!criada) {
+    if (fabrica == nullptr) {
         erro = "Crie primeiro a fabrica";
         return false;
     }
-    if (!fabrica.coordenadaValida(centro)) {
+    if (!fabrica->coordenadaValida(centro)) {
         erro = "Posicao fora da fabrica";
         return false;
     }
@@ -47,7 +49,49 @@ bool Simulador::consultaPosicao(const Coordenada& centro, int raio, string& text
         erro = "Raio invalido";
         return false;
     }
-    texto = fabrica.obterDescricaoTerreno(centro, raio);
+    texto = fabrica->obterDescricaoPosicao(centro, raio);
+    return true;
+}
+
+bool Simulador::compraMaquina(char tipo, const Coordenada& pos, char dir) {
+    if (fabrica == nullptr) {
+        erro = "Crie primeiro a fabrica";
+        return false;
+    }
+    return fabrica->compraMaquina(tipo, pos, dir, erro);
+}
+
+bool Simulador::vendeMaquina(const Coordenada& pos) {
+    if (fabrica == nullptr) {
+        erro = "Crie primeiro a fabrica";
+        return false;
+    }
+    return fabrica->vendeMaquina(pos, erro);
+}
+
+bool Simulador::rodaMaquina(const Coordenada& pos, char dir) {
+    if (fabrica == nullptr) {
+        erro = "Crie primeiro a fabrica";
+        return false;
+    }
+    return fabrica->rodaMaquina(pos, dir, erro);
+}
+
+bool Simulador::avancaInstante() {
+    if (fabrica == nullptr) {
+        erro = "Crie primeiro a fabrica";
+        return false;
+    }
+    fabrica->avancaInstante();
+    return true;
+}
+
+bool Simulador::obterEstado(string& texto) {
+    if (fabrica == nullptr) {
+        erro = "Crie primeiro a fabrica";
+        return false;
+    }
+    texto = fabrica->obterEstado();
     return true;
 }
 

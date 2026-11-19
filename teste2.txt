@@ -1,0 +1,14 @@
+estado
+fabrica 12 20
+fabrica 5 5
+compra x aa d
+compra p aa
+compra p zz d
+compra t aa d
+compra t aa e
+vende ba
+roda aa b
+lposicao aa 1
+avanca 3
+ajuda compra
+fim
