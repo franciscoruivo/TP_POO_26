@@ -9,7 +9,7 @@ public:
     Transportador(char d);
     ~Transportador() override;
     char getSimbolo() const override;
-    std::string getNome() const override { return "Transportador"; }
+    std::string getNome() const override;
     bool recebe(Item* i) override;
     void atua(Fabrica& f, Celula& terreno, Maquina* destino) override;
     std::string getAsString() const override;

@@ -6,8 +6,8 @@
 class Oficina : public Maquina {
 public:
     Oficina(char d);
-    char getSimbolo() const override { return 'O'; }
-    std::string getNome() const override { return "Oficina"; }
+    char getSimbolo() const override;
+    std::string getNome() const override;
     bool recebe(Item* i) override;
     void atua(Fabrica& f, Celula& terreno, Maquina* destino) override;
 };

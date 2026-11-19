@@ -1,5 +1,5 @@
 #include "Comando.h"
-#include "../model/maquinas/Maquina.h"
+#include "Maquina.h"
 using namespace std;
 
 bool Comando::erroUso(const string& motivo) {
@@ -46,4 +46,12 @@ bool Comando::semMaisParametros(istringstream& in) {
     string sobra;
     if (in >> sobra) return erroUso("Parametros a mais");
     return true;
+}
+
+Comando::Comando(const string& l) : linha(l) {}
+
+Comando::~Comando() {}
+
+const string& Comando::getErro() const {
+    return erro;
 }

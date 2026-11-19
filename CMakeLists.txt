@@ -3,47 +3,50 @@ project(TP_POO)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(TP_POO main.cpp
-        controller/Comando.cpp
-        controller/ComandoAjuda.cpp
-        controller/ComandoAtribui.cpp
-        controller/ComandoAvanca.cpp
-        controller/ComandoCarrega.cpp
-        controller/ComandoCompra.cpp
-        controller/ComandoContrata.cpp
-        controller/ComandoDespede.cpp
-        controller/ComandoEstado.cpp
-        controller/ComandoExecuta.cpp
-        controller/ComandoFabrica.cpp
-        controller/ComandoFim.cpp
-        controller/ComandoGrava.cpp
-        controller/ComandoLposicao.cpp
-        controller/ComandoMelhora.cpp
-        controller/ComandoRecupera.cpp
-        controller/ComandoRoda.cpp
-        controller/ComandoVende.cpp
-        controller/LeitorComandos.cpp
-        model/Celula.cpp
-        model/Coordenada.cpp
-        model/Fabrica.cpp
-        model/maquinas/Lancador.cpp
-        model/maquinas/Maquina.cpp
-        model/itens/MateriaPrima.cpp
-        model/maquinas/Oficina.cpp
-        model/maquinas/Perfuradora.cpp
-        model/maquinas/Refinaria.cpp
-        model/maquinas/Silo.cpp
-        model/Simulador.cpp
-        model/maquinas/Transportador.cpp
-        util/Random.cpp
-        view/Ecra.cpp
-        view/Interface.cpp
-        view/VistaFabrica.cpp
+add_executable(TP_POO "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/main.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/controller/Comando.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/controller/ComandoAjuda.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/controller/ComandoAtribui.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/controller/ComandoAvanca.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/controller/ComandoCarrega.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/controller/ComandoCompra.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/controller/ComandoContrata.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/controller/ComandoDespede.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/controller/ComandoEstado.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/controller/ComandoExecuta.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/controller/ComandoFabrica.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/controller/ComandoFim.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/controller/ComandoGrava.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/controller/ComandoLposicao.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/controller/ComandoMelhora.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/controller/ComandoRecupera.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/controller/ComandoRoda.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/controller/ComandoVende.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/controller/LeitorComandos.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/model/Celula.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/model/Coordenada.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/model/Fabrica.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/model/Simulador.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/model/itens/Item.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/model/itens/MateriaPrima.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/model/maquinas/Lancador.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/model/maquinas/Maquina.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/model/maquinas/Oficina.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/model/maquinas/Perfuradora.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/model/maquinas/Refinaria.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/model/maquinas/Silo.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/model/maquinas/Transportador.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/util/Random.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/view/Ecra.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/view/Interface.cpp"
+        "../../Users/rpess/Downloads/projeto_cp2_codigo (3)/poo_2627_m2_AnaPessoa_2023112690_FranciscoRuivo_2021142024/view/VistaFabrica.cpp"
 )
 
 target_include_directories(TP_POO PRIVATE
         ${CMAKE_SOURCE_DIR}
         ${CMAKE_SOURCE_DIR}/model
+        ${CMAKE_SOURCE_DIR}/model/itens
+        ${CMAKE_SOURCE_DIR}/model/maquinas
         ${CMAKE_SOURCE_DIR}/view
         ${CMAKE_SOURCE_DIR}/controller
         ${CMAKE_SOURCE_DIR}/util)

@@ -1,6 +1,6 @@
 #include "Lancador.h"
 #include <sstream>
-#include "../Fabrica.h"
+#include "Fabrica.h"
 #include "Random.h"
 #include "Settings.h"
 using namespace std;
@@ -43,4 +43,12 @@ string Lancador::getAsString() const {
     out << ", recarga " << contador << "/" << Settings::lancador_recarga
         << ", probabilidade de perda " << probPerda << "%";
     return out.str();
+}
+
+char Lancador::getSimbolo() const {
+    return 'L';
+}
+
+string Lancador::getNome() const {
+    return "Lancador";
 }

@@ -26,7 +26,7 @@ void Interface::mostraErro(const string& erro) const {
 }
 
 void Interface::processaLinha(const string& linha) {
-    istringstream in(linha); // análise palavra a palavra
+    istringstream in(linha);
     string palavra;
     if (!(in >> palavra)) return;  // linha vazia
 

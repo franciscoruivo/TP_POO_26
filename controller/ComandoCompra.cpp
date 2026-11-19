@@ -1,7 +1,7 @@
 #include "ComandoCompra.h"
 #include "Interface.h"
 #include "Simulador.h"
-#include "../model/maquinas/Maquina.h"
+#include "Maquina.h"
 using namespace std;
 
 ComandoCompra::ComandoCompra(const string& l) : Comando(l), tipo(' '), dir(' ') {}

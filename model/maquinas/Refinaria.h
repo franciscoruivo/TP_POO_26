@@ -6,8 +6,8 @@
 class Refinaria : public Maquina {
 public:
     Refinaria(char d);
-    char getSimbolo() const override { return 'R'; }
-    std::string getNome() const override { return "Refinaria"; }
+    char getSimbolo() const override;
+    std::string getNome() const override;
     bool recebe(Item* i) override;
     void atua(Fabrica& f, Celula& terreno, Maquina* destino) override;
 };

@@ -8,11 +8,11 @@ class Item {
     char simbolo;
     int valor;  // em créditos
 public:
-    Item(const std::string& n, char s, int v) : nome(n), simbolo(s), valor(v) {}
-    virtual ~Item() {}
-    const std::string& getNome() const { return nome; }
-    char getSimbolo() const { return simbolo; }
-    int getValor() const { return valor; }
+    Item(const std::string& n, char s, int v);
+    virtual ~Item();
+    const std::string& getNome() const;
+    char getSimbolo() const;
+    int getValor() const;
     virtual std::string getAsString() const = 0;  // abstrata: só existem itens concretos
 };
 #endif

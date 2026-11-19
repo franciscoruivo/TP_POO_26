@@ -23,14 +23,14 @@ protected:
     bool leDirecao(std::istringstream& in, char& dir);
     bool semMaisParametros(std::istringstream& in);
 public:
-    Comando(const std::string& l) : linha(l) {}
-    virtual ~Comando() {}
+    Comando(const std::string& l);
+    virtual ~Comando();
 
     virtual bool valida() = 0;  // sintaxe e parâmetros
     virtual void executa(Simulador& s, Interface& ui) = 0;
     virtual std::string sintaxe() const = 0;  // sintaxe resumida
     virtual std::string ajuda() const = 0;    // ajuda detalhada
 
-    const std::string& getErro() const { return erro; }
+    const std::string& getErro() const;
 };
 #endif

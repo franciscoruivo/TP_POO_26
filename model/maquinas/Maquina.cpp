@@ -25,3 +25,17 @@ void Maquina::iniciaInstante() {
 string Maquina::getAsString() const {
     return getNome() + ", direcao " + string(1, direcao);
 }
+
+Maquina::~Maquina() {}
+
+char Maquina::getDirecao() const {
+    return direcao;
+}
+
+void Maquina::setDirecao(char d) {
+    direcao = d;
+}
+
+int Maquina::getCusto() const {
+    return custo;
+}

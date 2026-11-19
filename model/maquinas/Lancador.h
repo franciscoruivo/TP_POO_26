@@ -10,8 +10,8 @@ class Lancador : public Maquina {
 public:
     Lancador(char d);
     ~Lancador() override;
-    char getSimbolo() const override { return 'L'; }
-    std::string getNome() const override { return "Lancador"; }
+    char getSimbolo() const override;
+    std::string getNome() const override;
     bool recebe(Item* i) override;
     void atua(Fabrica& f, Celula& terreno, Maquina* destino) override;
     std::string getAsString() const override;

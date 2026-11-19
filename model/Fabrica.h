@@ -3,8 +3,8 @@
 #include <string>
 #include "Coordenada.h"
 #include "Celula.h"
-#include "itens/Item.h"
-#include "maquinas/Maquina.h"
+#include "Item.h"
+#include "Maquina.h"
 #include "Settings.h"
 
 class Fabrica {
@@ -20,7 +20,7 @@ class Fabrica {
     int enviados[3];  // itens enviados para a Terra: ferro, silício, gelo
 
     void inicia();
-    void colocaAleatorios(char tipo, int quantos);
+    void colocaAleatorios(TipoTerreno tipo, int quantos);
     Maquina* criaMaquina(char tipo, char dir) const;
     Maquina* vizinha(int l, int c, char dir) const;  // máquina vizinha nessa direção (ou nullptr)
 public:
@@ -32,14 +32,14 @@ public:
 
     static bool dimensoesValidas(int nl, int nc);
 
-    int getLinhas() const { return linhas; }
-    int getColunas() const { return colunas; }
-    int getCreditos() const { return creditos; }
-    int getInstante() const { return instante; }
-    int getNumMaquinas() const { return numMaquinas; }
-    int getNumEngenheiros() const { return numEngenheiros; }
-    int getNumEventos() const { return numEventos; }
-    const std::string& getEvento(int i) const { return eventos[i]; }
+    int getLinhas() const;
+    int getColunas() const;
+    int getCreditos() const;
+    int getInstante() const;
+    int getNumMaquinas() const;
+    int getNumEngenheiros() const;
+    int getNumEventos() const;
+    const std::string& getEvento(int i) const;
 
     bool coordenadaValida(const Coordenada& c) const;
     const Celula& getPosicao(const Coordenada& c) const;   // "out_of_range" se inválida

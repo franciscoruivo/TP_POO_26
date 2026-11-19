@@ -78,3 +78,11 @@ string Silo::getAsString() const {
     out << ", probabilidade de perda " << probPerda << "%";
     return out.str();
 }
+
+char Silo::getSimbolo() const {
+    return 'S';
+}
+
+string Silo::getNome() const {
+    return "Silo";
+}

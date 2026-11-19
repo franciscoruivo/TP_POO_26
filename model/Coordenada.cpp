@@ -20,3 +20,11 @@ bool Coordenada::converte(const string& texto, Coordenada& resultado) {
     resultado = Coordenada(l - 'a', c - 'a');
     return true;
 }
+
+int Coordenada::getLinha() const {
+    return linha;
+}
+
+int Coordenada::getColuna() const {
+    return coluna;
+}

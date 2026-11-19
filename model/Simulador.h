@@ -25,9 +25,9 @@ public:
     bool obterEstado(std::string& texto);
     void fim();
 
-    bool terminou() const { return terminar; }
-    bool temFabrica() const { return fabrica != nullptr; }
-    const std::string& getErro() const { return erro; }
-    const Fabrica& getFabrica() const { return *fabrica; }
+    bool terminou() const;
+    bool temFabrica() const;
+    const std::string& getErro() const;
+    const Fabrica& getFabrica() const;
 };
 #endif

@@ -10,3 +10,11 @@ bool Oficina::recebe(Item*) {
 void Oficina::atua(Fabrica&, Celula&, Maquina*) {
     // entrega final
 }
+
+char Oficina::getSimbolo() const {
+    return 'O';
+}
+
+std::string Oficina::getNome() const {
+    return "Oficina";
+}

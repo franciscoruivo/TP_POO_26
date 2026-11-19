@@ -1,7 +1,7 @@
 #ifndef MAQUINA_H
 #define MAQUINA_H
 #include <string>
-#include "../itens/Item.h"
+#include "Item.h"
 
 class Fabrica;
 class Celula;
@@ -17,13 +17,13 @@ protected:
     bool entrega(Item*& item, Maquina* destino);
 public:
     Maquina(int c, char d);
-    virtual ~Maquina() {}
+    virtual ~Maquina();
     Maquina(const Maquina&) = delete;
     Maquina& operator=(const Maquina&) = delete;
 
-    char getDirecao() const { return direcao; }
-    void setDirecao(char d) { direcao = d; }
-    int getCusto() const { return custo; }
+    char getDirecao() const;
+    void setDirecao(char d);
+    int getCusto() const;
     static bool direcaoValida(char d);
     static bool tipoValido(char t);
 

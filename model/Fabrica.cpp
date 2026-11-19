@@ -3,12 +3,12 @@
 #include <sstream>
 #include <stdexcept>
 #include "Random.h"
-#include "maquinas/Perfuradora.h"
-#include "maquinas/Transportador.h"
-#include "maquinas/Refinaria.h"
-#include "maquinas/Oficina.h"
-#include "maquinas/Silo.h"
-#include "maquinas/Lancador.h"
+#include "Perfuradora.h"
+#include "Transportador.h"
+#include "Refinaria.h"
+#include "Oficina.h"
+#include "Silo.h"
+#include "Lancador.h"
 using namespace std;
 
 int quantidadeAleatoria() {
@@ -36,10 +36,10 @@ Fabrica::Fabrica(int nl, int nc)
       numMaquinas(0), numEngenheiros(0), numEventos(0) {
     if (!dimensoesValidas(nl, nc)) throw invalid_argument("Dimensoes invalidas");  // construtor não devolve valor -> usa execução
     inicia();
-    colocaAleatorios('#', Settings::fabrica_num_crateras);
-    colocaAleatorios('%', Settings::fabrica_num_depositos_ferro);
-    colocaAleatorios('$', Settings::fabrica_num_depositos_silicio);
-    colocaAleatorios('~', Settings::fabrica_num_depositos_gelo);
+    colocaAleatorios(Cratera, Settings::fabrica_num_crateras);
+    colocaAleatorios(Ferro, Settings::fabrica_num_depositos_ferro);
+    colocaAleatorios(Silicio, Settings::fabrica_num_depositos_silicio);
+    colocaAleatorios(Gelo, Settings::fabrica_num_depositos_gelo);
 }
 
 Fabrica::Fabrica(const string& nomeFicheiro)
@@ -67,11 +67,12 @@ Fabrica::Fabrica(const string& nomeFicheiro)
         int tamanho = linha.length();
         if (tamanho != nc) throw invalid_argument("Linha do mapa com tamanho errado");
         for (int c = 0; c < nc; c++) {
-            char tipo = linha[c];
+            TipoTerreno tipo;
+            if (!Celula::converteSimbolo(linha[c], tipo))
+                throw invalid_argument("Caractere invalido no mapa");
             int quantidade = 0;
             if (Celula::tipoDeposito(tipo)) quantidade = quantidadeAleatoria();
-            if (!grelha[l][c].definirTerreno(tipo, quantidade))
-                throw invalid_argument("Caractere invalido no mapa");
+            grelha[l][c].definirTerreno(tipo, quantidade);
         }
     }
 
@@ -99,16 +100,14 @@ Fabrica::~Fabrica() {
             delete maquinas[l][c];
 }
 
-void Fabrica::colocaAleatorios(char tipo, int quantos) {
+void Fabrica::colocaAleatorios(TipoTerreno tipo, int quantos) {
     int colocados = 0;
     while (colocados < quantos) {
         int l = Random::getRandom(linhas - 1);  // inclui o máximo
         int c = Random::getRandom(colunas - 1);
-        if (grelha[l][c].getTipo() == '.') {  // só se ainda for solo
+        if (grelha[l][c].getTipo() == Solo) {  // só se ainda for solo
             int quantidade = 0;
-            if (Celula::tipoDeposito(tipo)) {
-                quantidade = quantidadeAleatoria();
-            }
+            if (Celula::tipoDeposito(tipo)) quantidade = quantidadeAleatoria();
             grelha[l][c].definirTerreno(tipo, quantidade);
             colocados++;
         }
@@ -128,9 +127,9 @@ const Celula& Fabrica::getPosicao(const Coordenada& c) const {
 char Fabrica::getSimboloPosicao(const Coordenada& c) const {
     Maquina* m = maquinas[c.getLinha()][c.getColuna()];
     if (m != nullptr) return m->getSimbolo();
-    char tipo = getPosicao(c).getTipo();
-    if (tipo == '.') return ' ';  // solo desenha-se vazio
-    return tipo;
+    const Celula& celula = getPosicao(c);
+    if (celula.getTipo() == Solo) return ' ';  // solo desenha-se vazio
+    return celula.getSimbolo();
 }
 
 Maquina* Fabrica::criaMaquina(char tipo, char dir) const {
@@ -148,7 +147,7 @@ bool Fabrica::compraMaquina(char tipo, const Coordenada& pos, char dir, string& 
         erro = "Posicao fora da fabrica";
         return false;
     }
-    if (getPosicao(pos).getTipo() == '#') {
+    if (getPosicao(pos).getTipo() == Cratera) {
         erro = "Nao se pode colocar uma maquina numa cratera";
         return false;
     }
@@ -243,7 +242,7 @@ void Fabrica::avancaInstante() {
             if (m == nullptr) continue;
             bool eraDeposito = Celula::tipoDeposito(grelha[l][c].getTipo());
             m->atua(*this, grelha[l][c], vizinha(l, c, m->getDirecao()));
-            if (eraDeposito && grelha[l][c].getTipo() == '.')
+            if (eraDeposito && grelha[l][c].getTipo() == Solo)
                 registaEvento("deposito esgotado em " + Coordenada(l, c).obterTexto());
         }
     }
@@ -282,4 +281,36 @@ string Fabrica::obterDescricaoPosicao(const Coordenada& centro, int raio) const 
         }
     }
     return out.str();
+}
+
+int Fabrica::getLinhas() const {
+    return linhas;
+}
+
+int Fabrica::getColunas() const {
+    return colunas;
+}
+
+int Fabrica::getCreditos() const {
+    return creditos;
+}
+
+int Fabrica::getInstante() const {
+    return instante;
+}
+
+int Fabrica::getNumMaquinas() const {
+    return numMaquinas;
+}
+
+int Fabrica::getNumEngenheiros() const {
+    return numEngenheiros;
+}
+
+int Fabrica::getNumEventos() const {
+    return numEventos;
+}
+
+const string& Fabrica::getEvento(int i) const {
+    return eventos[i];
 }

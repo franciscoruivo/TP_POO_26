@@ -13,8 +13,8 @@ class Silo : public Maquina {
 public:
     Silo(char d);
     ~Silo() override;
-    char getSimbolo() const override { return 'S'; }
-    std::string getNome() const override { return "Silo"; }
+    char getSimbolo() const override;
+    std::string getNome() const override;
     bool recebe(Item* i) override;
     void atua(Fabrica& f, Celula& terreno, Maquina* destino) override;
     void iniciaInstante() override;

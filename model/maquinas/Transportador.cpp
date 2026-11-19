@@ -32,3 +32,7 @@ string Transportador::getAsString() const {
     if (item == nullptr) return Maquina::getAsString() + ", vazio";
     return Maquina::getAsString() + ", com " + item->getAsString();
 }
+
+string Transportador::getNome() const {
+    return "Transportador";
+}

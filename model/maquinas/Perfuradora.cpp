@@ -1,7 +1,7 @@
 #include "Perfuradora.h"
 #include <sstream>
-#include "../Celula.h"
-#include "../itens/MateriaPrima.h"
+#include "Celula.h"
+#include "MateriaPrima.h"
 #include "Random.h"
 #include "Settings.h"
 using namespace std;
@@ -19,14 +19,11 @@ bool Perfuradora::recebe(Item*) {
 }
 
 void Perfuradora::atua(Fabrica&, Celula& terreno, Maquina* destino) {
-
-    if (item != nullptr) {  // tem um item por entregar
-
+    if (item != nullptr) {  // tem um item por entregar: não perfura (nem conta) enquanto o tiver
         if (!novoItem) entrega(item, destino);
         return;
     }
-    if (contador < Settings::perfuradora_periodo) contador++;  // conta sempre
-
+    if (contador < Settings::perfuradora_periodo) contador++;
     if (contador < Settings::perfuradora_periodo) return;
     contador = 0;
 
@@ -47,4 +44,12 @@ string Perfuradora::getAsString() const {
     out << ", extracao " << contador << "/" << Settings::perfuradora_periodo
         << ", probabilidade de perda " << probPerda << "%";
     return out.str();
+}
+
+char Perfuradora::getSimbolo() const {
+    return 'P';
+}
+
+string Perfuradora::getNome() const {
+    return "Perfuradora";
 }

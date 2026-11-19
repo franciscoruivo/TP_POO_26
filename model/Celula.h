@@ -2,19 +2,24 @@
 #define CELULA_H
 #include <string>
 
-// Terreno de uma célula: '.' solo, '#' cratera, '%' ferro, '$' silício, '~' gelo
+// Tipos de terreno de uma célula
+enum TipoTerreno { Solo, Cratera, Ferro, Silicio, Gelo };
+
+// Terreno de uma célula e, nos depósitos, a quantidade que ainda tem
 class Celula {
-    char tipo;
+    TipoTerreno tipo;
     int quantidade;  // só nos depósitos
 public:
     Celula();
 
-    static bool tipoValido(char t);
-    static bool tipoDeposito(char t);
+    static bool tipoDeposito(TipoTerreno t);
+    // converte o caractere do mapa ('.', '#', '%', '$' ou '~'); devolve false se for outro
+    static bool converteSimbolo(char simbolo, TipoTerreno& resultado);
 
-    bool definirTerreno(char novoTipo, int novaQuantidade = 0);
-    char getTipo() const { return tipo; }
-    int getQuantidade() const { return quantidade; }
+    bool definirTerreno(TipoTerreno novoTipo, int novaQuantidade = 0);
+    TipoTerreno getTipo() const;
+    int getQuantidade() const;
+    char getSimbolo() const;        // caractere usado para desenhar o terreno
     char getMateriaPrima() const;   // 'f', 's' ou 'g' se for depósito, senão ' '
     bool retiraUnidade();           // tira 1 unidade ao depósito; se esgotar passa a solo
     std::string obterDescricao() const;

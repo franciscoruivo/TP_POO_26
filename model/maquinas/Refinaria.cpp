@@ -10,3 +10,11 @@ bool Refinaria::recebe(Item*) {
 void Refinaria::atua(Fabrica&, Celula&, Maquina*) {
     // entrega final
 }
+
+char Refinaria::getSimbolo() const {
+    return 'R';
+}
+
+std::string Refinaria::getNome() const {
+    return "Refinaria";
+}

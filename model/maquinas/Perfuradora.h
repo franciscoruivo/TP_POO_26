@@ -10,8 +10,8 @@ class Perfuradora : public Maquina {
 public:
     Perfuradora(char d);
     ~Perfuradora() override;
-    char getSimbolo() const override { return 'P'; }
-    std::string getNome() const override { return "Perfuradora"; }
+    char getSimbolo() const override;
+    std::string getNome() const override;
     bool recebe(Item* i) override;
     void atua(Fabrica& f, Celula& terreno, Maquina* destino) override;
     std::string getAsString() const override;

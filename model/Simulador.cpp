@@ -98,3 +98,19 @@ bool Simulador::obterEstado(string& texto) {
 void Simulador::fim() {
     terminar = true;
 }
+
+bool Simulador::terminou() const {
+    return terminar;
+}
+
+bool Simulador::temFabrica() const {
+    return fabrica != nullptr;
+}
+
+const string& Simulador::getErro() const {
+    return erro;
+}
+
+const Fabrica& Simulador::getFabrica() const {
+    return *fabrica;
+}
