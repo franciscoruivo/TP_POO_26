@@ -3,12 +3,14 @@
 
 Refinaria::Refinaria(char d) : Maquina(Settings::refinaria_custo, d) {}
 
+
+// Última meta
 bool Refinaria::recebe(Item*) {
-    return false;  // entrega final
+    return false;
 }
 
 void Refinaria::atua(Fabrica&, Celula&, Maquina*) {
-    // entrega final
+
 }
 
 char Refinaria::getSimbolo() const {

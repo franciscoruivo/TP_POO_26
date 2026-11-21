@@ -8,10 +8,10 @@
 #include "Settings.h"
 
 class Fabrica {
-    static const int maxEventos = 4;  // linhas do "no último instante" no painel
+    static const int maxEventos = 4;  // quantas linhas de eventos cabem no painel ("no último instante")
 
     Celula grelha[Settings::fabrica_max_linhas][Settings::fabrica_max_colunas];
-    Maquina* maquinas[Settings::fabrica_max_linhas][Settings::fabrica_max_colunas];  // nullptr = sem máquina
+    Maquina* maquinas[Settings::fabrica_max_linhas][Settings::fabrica_max_colunas];  // nullptr = nã há máquina
     int linhas, colunas;
     int creditos, instante;
     int numMaquinas, numEngenheiros;
@@ -24,8 +24,8 @@ class Fabrica {
     Maquina* criaMaquina(char tipo, char dir) const;
     Maquina* vizinha(int l, int c, char dir) const;  // máquina vizinha nessa direção (ou nullptr)
 public:
-    Fabrica(int nl, int nc); // aleatória
-    Fabrica(const std::string& nomeFicheiro);  // a partir de um mapa
+    Fabrica(int nl, int nc); // fábrica aleatória
+    Fabrica(const std::string& nomeFicheiro);  // fábrica feita a partir de um mapa (ficheiro)
     ~Fabrica();
     Fabrica(const Fabrica&) = delete;
     Fabrica& operator=(const Fabrica&) = delete;
@@ -42,17 +42,17 @@ public:
     const std::string& getEvento(int i) const;
 
     bool coordenadaValida(const Coordenada& c) const;
-    const Celula& getPosicao(const Coordenada& c) const;   // "out_of_range" se inválida
-    char getSimboloPosicao(const Coordenada& c) const;     // a máquina, ou então o terreno
+    const Celula& getPosicao(const Coordenada& c) const;   // "out_of_range" -> posição inválida
+    char getSimboloPosicao(const Coordenada& c) const;     // símbolo da máquina, ou então do terreno
 
-    // máquinas (devolvem false e preenchem erro quando não é possível)
+    // operações com máquinas (dão false e preenchem o erro se não der)
     bool compraMaquina(char tipo, const Coordenada& pos, char dir, std::string& erro);
     bool vendeMaquina(const Coordenada& pos, std::string& erro);
     bool rodaMaquina(const Coordenada& pos, char dir, std::string& erro);
 
     void avancaInstante();
 
-    // usadas pelas máquinas
+    // funções que as máquinas usam
     void registaEvento(const std::string& texto);
     void registaEnvio(const Item& item);  // soma os créditos do item
 

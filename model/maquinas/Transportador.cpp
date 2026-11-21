@@ -9,7 +9,7 @@ Transportador::~Transportador() {
 }
 
 char Transportador::getSimbolo() const {
-    if (item != nullptr) return item->getSimbolo();  // mostra o item que transporta
+    if (item != nullptr) return item->getSimbolo();  // mostra o item que está a transportar
     char d = getDirecao();
     if (d == 'c') return '^';
     if (d == 'b') return 'v';

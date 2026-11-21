@@ -7,7 +7,7 @@ using namespace std;
 
 Lancador::Lancador(char d)
     : Maquina(Settings::lancador_custo, d), item(nullptr),
-      contador(Settings::lancador_recarga),  // começa pronto a disparar
+      contador(Settings::lancador_recarga),  // começa já carregado, pronto a lançar
       probPerda(Settings::lancador_prob_perda) {}
 
 Lancador::~Lancador() {
@@ -15,7 +15,7 @@ Lancador::~Lancador() {
 }
 
 bool Lancador::recebe(Item* i) {
-    if (item != nullptr) return false;  // enquanto tiver um item por lançar não aceita outro
+    if (item != nullptr) return false;  // se ainda tem um item por lançar, não aceita outro
     item = i;
     novoItem = true;
     return true;
@@ -24,7 +24,7 @@ bool Lancador::recebe(Item* i) {
 void Lancador::atua(Fabrica& f, Celula&, Maquina*) {
     if (contador < Settings::lancador_recarga) contador++;
     if (item == nullptr || novoItem) return;
-    if (contador < Settings::lancador_recarga) return;  // ainda está a carregar
+    if (contador < Settings::lancador_recarga) return;  // ainda está a recarregar
 
     contador = 0;
     if (Random::getRandom(1, 100) <= probPerda)

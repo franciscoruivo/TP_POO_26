@@ -2,7 +2,8 @@
 #define OFICINA_H
 #include "Maquina.h"
 
-// Só a estrutura (o comportamento fica para a entrega final)
+// Última meta: definir o comportamento
+// Só a estrutura
 class Oficina : public Maquina {
 public:
     Oficina(char d);

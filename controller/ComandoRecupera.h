@@ -2,7 +2,7 @@
 #define COMANDORECUPERA_H
 #include "Comando.h"
 
-// Recupera uma cópia da fábrica
+// Volta a uma cópia da fábrica que foi guardada
 class ComandoRecupera : public Comando {
     std::string nome;
 public:

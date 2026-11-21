@@ -19,7 +19,7 @@ bool Perfuradora::recebe(Item*) {
 }
 
 void Perfuradora::atua(Fabrica&, Celula& terreno, Maquina* destino) {
-    if (item != nullptr) {  // tem um item por entregar: não perfura (nem conta) enquanto o tiver
+    if (item != nullptr) {  // tem um item por entregar: não perfura (nem conta o tempo) enquanto o tiver
         if (!novoItem) entrega(item, destino);
         return;
     }

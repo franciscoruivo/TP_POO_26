@@ -2,7 +2,8 @@
 #define REFINARIA_H
 #include "Maquina.h"
 
-// Só a estrutura (o comportamento fica para a entrega final)
+// Última meta: definir o comportamento
+// Estrutura
 class Refinaria : public Maquina {
 public:
     Refinaria(char d);

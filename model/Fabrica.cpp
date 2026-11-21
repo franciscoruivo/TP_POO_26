@@ -16,7 +16,7 @@ int quantidadeAleatoria() {
                              Settings::deposito_quantidade_max);
 }
 
-// ficheiros escritos no Windows podem terminar as linhas com \r\n
+// se o ficheiro foi feito no Windows, as linhas podem acabar em \r\n
 void tiraRetorno(string& linha) {
     if (!linha.empty() && linha[linha.length() - 1] == '\r')
         linha = linha.substr(0, linha.length() - 1);
@@ -27,7 +27,7 @@ bool Fabrica::dimensoesValidas(int nl, int nc) {
                   + Settings::fabrica_num_depositos_silicio + Settings::fabrica_num_depositos_gelo;
     return nl >= 1 && nl <= Settings::fabrica_max_linhas
         && nc >= 1 && nc <= Settings::fabrica_max_colunas
-        && nl * nc > especiais;  // porque tem de sobrar solo livre, assim o sorteio termina
+        && nl * nc > especiais;  // tem de sobrar solo livre, senão o sorteio nunca acabava
 }
 
 Fabrica::Fabrica(int nl, int nc)
@@ -76,7 +76,7 @@ Fabrica::Fabrica(const string& nomeFicheiro)
         }
     }
 
-    while (getline(ficheiro, linha)) {  // depois do mapa, só linhas vazias
+    while (getline(ficheiro, linha)) {  // depois do mapa só pode haver linhas vazias
         tiraRetorno(linha);
         if (!linha.empty()) throw invalid_argument("Linhas a mais no mapa");
     }
@@ -182,7 +182,7 @@ bool Fabrica::vendeMaquina(const Coordenada& pos, string& erro) {
         return false;
     }
     creditos += m->getCusto() * Settings::maquina_percentagem_venda / 100;
-    delete m;  // os itens que lá estiverem perdem-se
+    delete m;  // os itens que lá estavam perdem-se
     maquinas[pos.getLinha()][pos.getColuna()] = nullptr;
     numMaquinas--;
     return true;
@@ -212,7 +212,7 @@ Maquina* Fabrica::vizinha(int l, int c, char dir) const {
 }
 
 void Fabrica::registaEvento(const string& texto) {
-    if (numEventos < maxEventos) {  // o que não cabe no painel é ignorado
+    if (numEventos < maxEventos) {  // o que não cabe no painel fica de fora
         eventos[numEventos] = texto;
         numEventos++;
     }

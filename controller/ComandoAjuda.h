@@ -2,7 +2,7 @@
 #define COMANDOAJUDA_H
 #include "Comando.h"
 
-// Mostra os comandos ou a ajuda de um comando
+// Mostra todos os comandos ou a ajuda de um só
 class ComandoAjuda : public Comando {
     std::string alvo;
 public:

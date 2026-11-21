@@ -2,7 +2,7 @@
 #define COMANDOLPOSICAO_H
 #include "Comando.h"
 
-// Mostra informação de uma posição
+// Mostra o que há numa posição
 class ComandoLposicao : public Comando {
     Coordenada pos;
     int raio;

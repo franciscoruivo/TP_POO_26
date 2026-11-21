@@ -2,7 +2,7 @@
 #define COMANDOESTADO_H
 #include "Comando.h"
 
-// Mostra o estado da fábrica
+// Mostra como está a fábrica
 class ComandoEstado : public Comando {
 public:
     ComandoEstado(const std::string& l);

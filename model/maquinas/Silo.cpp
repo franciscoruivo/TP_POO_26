@@ -18,7 +18,7 @@ bool Silo::recebe(Item* i) {
     Item** aux = new Item*[n + 1];  // espaço para mais um
     for (int k = 0; k < n; k++)
         aux[k] = itens[k];
-    aux[n] = i;  // o novo fica em último
+    aux[n] = i;  // o novo fica no fim
     delete[] itens;
     itens = aux;
     n++;
@@ -34,7 +34,7 @@ void Silo::tiraMaisAntigo() {
         itensNovos = 0;
         return;
     }
-    Item** aux = new Item*[n - 1];  // espaço ajustado para menos um
+    Item** aux = new Item*[n - 1];  // ajusta o espaço para menos um
     for (int k = 1; k < n; k++)
         aux[k - 1] = itens[k];
     delete[] itens;

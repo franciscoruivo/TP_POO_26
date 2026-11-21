@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-// Só a grelha de carateres! Não sabe nada do jogo
+// Só a grelha de carateres. Não sabe nada do jogo
 
 Ecra::Ecra(int nl, int nc) : linhas(nl), colunas(nc), linhaCursor(0), colunaCursor(0) {
     if (linhas < 0) linhas = 0;
@@ -47,7 +47,7 @@ void Ecra::escreve(int l, int c, const string& s) {
 }
 
 void Ecra::moldura(int l, int c, int altura, int largura) {
-    if (altura < 1 || largura < 1) return;               // moldura impossível
+    if (altura < 1 || largura < 1) return;               // moldura impossível -> não desenha
     // linhas horizontais
     for (int j = 0; j < largura; j++) {
         escreve(l, c + j, '-');

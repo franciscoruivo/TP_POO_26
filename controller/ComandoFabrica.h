@@ -2,7 +2,7 @@
 #define COMANDOFABRICA_H
 #include "Comando.h"
 
-// Cria a fábrica com dimensões
+// Cria a fábrica com o tamanho indicado
 class ComandoFabrica : public Comando {
     int nl;
     int nc;

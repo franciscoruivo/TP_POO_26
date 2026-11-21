@@ -56,7 +56,7 @@ char Celula::getMateriaPrima() const {
 bool Celula::retiraUnidade() {
     if (!tipoDeposito(tipo) || quantidade <= 0) return false;
     quantidade--;
-    if (quantidade == 0) tipo = Solo;  // esgotou: passa a solo
+    if (quantidade == 0) tipo = Solo;  // 	o depósito acabou: passa a solo
     return true;
 }
 

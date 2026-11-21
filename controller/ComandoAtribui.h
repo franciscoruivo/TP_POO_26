@@ -2,7 +2,7 @@
 #define COMANDOATRIBUI_H
 #include "Comando.h"
 
-// Atribui um engenheiro a uma máquina
+// Põe um engenheiro numa máquina
 class ComandoAtribui : public Comando {
     int id;
     Coordenada pos;

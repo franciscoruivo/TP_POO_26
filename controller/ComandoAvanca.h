@@ -2,7 +2,7 @@
 #define COMANDOAVANCA_H
 #include "Comando.h"
 
-// Avança instantes
+// Faz passar o tempo (avança instantes)
 class ComandoAvanca : public Comando {
     int n;
 public:

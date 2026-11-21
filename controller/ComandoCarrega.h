@@ -2,7 +2,7 @@
 #define COMANDOCARREGA_H
 #include "Comando.h"
 
-// Cria a fábrica a partir de um ficheiro de mapa
+// Cria a fábrica a partir de um mapa que está num ficheiro
 class ComandoCarrega : public Comando {
     std::string nomeFicheiro;
 public:

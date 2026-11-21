@@ -2,7 +2,7 @@
 #define COMANDOFIM_H
 #include "Comando.h"
 
-// Termina o programa
+// Fecha o programa
 class ComandoFim : public Comando {
 public:
     ComandoFim(const std::string& l);

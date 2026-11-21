@@ -2,9 +2,9 @@
 #define LANCADOR_H
 #include "Maquina.h"
 
-// Envia itens para a Terra (rendem créditos)
+// 	Manda itens para a Terra (dão créditos)
 class Lancador : public Maquina {
-    Item* item;     // item por lançar
+    Item* item;     // item que falta lançar
     int contador;   // instantes desde o último lançamento
     int probPerda;  // em percentagem
 public:

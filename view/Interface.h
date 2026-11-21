@@ -10,13 +10,13 @@ class Interface {
     Simulador& simulador;
     VistaFabrica vista;
     LeitorComandos leitor;
-    bool aExecutarFicheiro;  // para não aceitar executa dentro de um ficheiro de comandos
+    bool aExecutarFicheiro;  // para não deixar usar o executa dentro de um ficheiro de comandos
 public:
     Interface(Simulador& sim);
 
     void executa();  // ciclo principal: lê comandos do teclado até ao fim
     void processaLinha(const std::string& linha);  // igual para o teclado e para os ficheiros
-    bool executaFicheiro(const std::string& nome);  // false se não conseguir abrir o ficheiro
+    bool executaFicheiro(const std::string& nome);  // false -> não consegue abrir o ficheiro
 
     void mostraFabrica() const;
     void mostraTexto(const std::string& texto) const;

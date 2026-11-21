@@ -4,9 +4,9 @@
 
 // Tira matéria-prima de um depósito e entrega-a à máquina da frente
 class Perfuradora : public Maquina {
-    Item* item;     // guarda no máximo 1 item por entregar
-    int contador;   // instantes desde a última extração
-    int probPerda;  // em percentagem
+    Item* item; // guarda no máximo 1 item para entregar
+    int contador; // instantes desde a última extração
+    int probPerda; // em percentagem
 public:
     Perfuradora(char d);
     ~Perfuradora() override;

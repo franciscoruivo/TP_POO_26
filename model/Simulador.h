@@ -4,11 +4,11 @@
 #include "Coordenada.h"
 #include "Fabrica.h"
 
-// Guarda os dados e faz o que os comandos pedem. Não escreve na consola.
+// Guarda os dados e faz o que os comandos pedem. Nunca escreve na consola
 class Simulador {
-    Fabrica* fabrica; // nullptr até ser criada
-    bool terminar; // condição de saída
-    std::string erro; // descrição da última falha
+    Fabrica* fabrica; // nullptr enquanto a fábrica não for criada
+    bool terminar; // para saber quando sair
+    std::string erro; // motivo da última falha
 public:
     Simulador();
     ~Simulador();

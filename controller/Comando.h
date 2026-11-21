@@ -8,13 +8,13 @@ class Simulador;
 class Interface;
 
 // Classe base de todos os comandos. Cada comando valida os seus parâmetros,
-// executa-se e gera a sua própria ajuda.
+// executa-se e sabe escrever a sua própria ajuda
 class Comando {
 protected:
-    std::string linha;  // a frase escrita pelo utilizador
-    std::string erro;   // preenchido por valida() quando falha
+    std::string linha;  // o que o utilizador escreveu
+    std::string erro;   // mensagem de erro, preenchida pelo valida() quando falha
 
-    // funções para ler parâmetros (preenchem o erro e devolvem false se falharem)
+    // funções para ler parâmetros (se falharem, guardam o erro e devolvem false)
     bool erroUso(const std::string& motivo);
     bool converteInteiro(const std::string& palavra, int& valor);
     bool lePalavra(std::istringstream& in, std::string& palavra);
@@ -26,10 +26,10 @@ public:
     Comando(const std::string& l);
     virtual ~Comando();
 
-    virtual bool valida() = 0;  // sintaxe e parâmetros
+    virtual bool valida() = 0;  // verifica sintaxe e parâmetros
     virtual void executa(Simulador& s, Interface& ui) = 0;
     virtual std::string sintaxe() const = 0;  // sintaxe resumida
-    virtual std::string ajuda() const = 0;    // ajuda detalhada
+    virtual std::string ajuda() const = 0;    // ajuda completa do comando
 
     const std::string& getErro() const;
 };

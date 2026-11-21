@@ -2,9 +2,9 @@
 #define SILO_H
 #include "Maquina.h"
 
-// Guarda itens de qualquer tipo, sem limite. Entrega primeiro o que está guardado há mais tempo.
+// Guarda itens de qualquer tipo, sem limite. Entrega primeiro o que está guardado há mais tempo
 class Silo : public Maquina {
-    Item** itens;    // array dinâmico de ponteiros, com exatamente n elementos (o 0 é o mais antigo)
+    Item** itens;    // array dinâmico de ponteiros, com n elementos (o 0 é o mais antigo)
     int n;
     int itensNovos;  // quantos itens chegaram neste instante (são os últimos do array)
     int probPerda;   // em percentagem

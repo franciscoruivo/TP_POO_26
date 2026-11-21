@@ -5,7 +5,7 @@
 
 class Ecra {
     char buffer[Settings::ecra_max_linhas][Settings::ecra_max_colunas];
-    int linhas, colunas;                    // dimensão realmente usada
+    int linhas, colunas; // tamanho que realmente usa
     int linhaCursor, colunaCursor;
 public:
     Ecra(int nl, int nc);

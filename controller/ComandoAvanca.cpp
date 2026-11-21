@@ -10,7 +10,7 @@ bool ComandoAvanca::valida() {
     string cmd;
     in >> cmd;
     string palavra;
-    if (in >> palavra) {  // o número é opcional
+    if (in >> palavra) {  // o número pode não ser escrito
         if (!converteInteiro(palavra, n)) return erroUso("'" + palavra + "' nao e um numero inteiro");
         if (n <= 0) return erroUso("O numero de instantes tem de ser positivo");
     }
