@@ -8,7 +8,7 @@ bool Comando::erroUso(const string& motivo) {
     return false;
 }
 
-bool Comando::converteInteiro(const string& palavra, int& valor) {
+bool Comando::converteInteiro(const string& palavra, int& valor) { // qd nº opcional - avanca , lposicao
     istringstream conv(palavra);
     string sobra;
     return (conv >> valor) && !(conv >> sobra);
@@ -19,7 +19,7 @@ bool Comando::lePalavra(istringstream& in, string& palavra) {
     return true;
 }
 
-bool Comando::leInteiro(istringstream& in, int& valor) {
+bool Comando::leInteiro(istringstream& in, int& valor){  // qd nº obrigatorio - fabrica, atribui, despede
     string palavra;
     if (!lePalavra(in, palavra)) return false;
     if (!converteInteiro(palavra, valor)) return erroUso("'" + palavra + "' nao e um numero inteiro");
