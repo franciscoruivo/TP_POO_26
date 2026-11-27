@@ -32,6 +32,6 @@ public:
     virtual bool recebe(Item* item) = 0;  // true -> a máquina aceitou o item (passa a ser dela)
     virtual void atua(Fabrica& f, Celula& terreno, Maquina* destino) = 0;  // chamada em cada instante
     virtual void iniciaInstante();
-    virtual std::string getAsString() const;
+    virtual std::string getAsString() const; // Implementada por omissão
 };
 #endif
