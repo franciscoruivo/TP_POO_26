@@ -26,7 +26,7 @@ public:
     Comando(const std::string& l);
     virtual ~Comando();
 
-    virtual bool valida() = 0;  // verifica sintaxe e parâmetros
+    virtual bool valida() = 0;  // Virtual Pura -> cd cmd verifica sintaxe e parâmetros
     virtual void executa(Simulador& s, Interface& ui) = 0;
     virtual std::string sintaxe() const = 0;  // sintaxe resumida
     virtual std::string ajuda() const = 0;    // ajuda completa do comando

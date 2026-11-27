@@ -19,7 +19,7 @@ bool Maquina::entrega(Item*& item, Maquina* destino) {
 }
 
 void Maquina::iniciaInstante() {
-    novoItem = false;
+    novoItem = false; // qd recebe ou produz -> true
 }
 
 string Maquina::getAsString() const {

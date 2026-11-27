@@ -25,14 +25,14 @@ void Perfuradora::atua(Fabrica&, Celula& terreno, Maquina* destino) {
     }
     if (contador < Settings::perfuradora_periodo) contador++;
     if (contador < Settings::perfuradora_periodo) return;
-    contador = 0;
+    contador = 0; // avança qd ñ tem nenhum item p entregar -> Ver se é suposto ser assim
 
     char simbolo = terreno.getMateriaPrima();
     if (simbolo == ' ') return;  // fora de um depósito não extrai nada
     if (!terreno.retiraUnidade()) return;
     if (Random::getRandom(1, 100) <= probPerda) return;  // o item perdeu-se
 
-    item = new MateriaPrima(simbolo);
+    item = new MateriaPrima(simbolo); // Mem Din -> criação de matéria prima
     novoItem = true;  // só é entregue no instante seguinte
 }
 

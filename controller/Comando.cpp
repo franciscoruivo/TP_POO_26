@@ -2,6 +2,7 @@
 #include "Maquina.h"
 using namespace std;
 
+// Fc auxiliares -> Partilhadas por todos os cmd -> Td têm de as validar
 bool Comando::erroUso(const string& motivo) {
     erro = motivo + ". Uso: " + sintaxe();
     return false;

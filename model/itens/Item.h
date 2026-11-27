@@ -13,6 +13,6 @@ public:
     const std::string& getNome() const;
     char getSimbolo() const;
     int getValor() const;
-    virtual std::string getAsString() const = 0;  // abstrata: só se criam itens concretos
+    virtual std::string getAsString() const = 0;  // Virtual Pura -> classe abstrata: não se criam Items, só MateriaPrima
 };
 #endif

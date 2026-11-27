@@ -6,6 +6,7 @@ using namespace std;
 
 ComandoCompra::ComandoCompra(const string& l) : Comando(l), tipo(' '), dir(' ') {}
 
+// Sintaxe + formato dos parâmetros (cd cmd tem a sua)
 bool ComandoCompra::valida() {
     istringstream in(linha);
     string cmd;
@@ -13,11 +14,12 @@ bool ComandoCompra::valida() {
     string palavra;
     if (!lePalavra(in, palavra)) return false;
     if (palavra.length() != 1 || !Maquina::tipoValido(palavra[0]))
-        return erroUso("'" + palavra + "' nao e um tipo de maquina (p, t, r, o, s ou l)");
+        return erroUso("'" + palavra + "' nao e um tipo de maquina (p, t, r, o, s ou l)"); // guarda erro. Interface mostra-o
     tipo = palavra[0];
     return leCoordenada(in, pos) && leDirecao(in, dir) && semMaisParametros(in);
 }
 
+// Validação das regras - pos ocupada, cratera, créditos insuficientes... (cd cmd tem a sua)
 void ComandoCompra::executa(Simulador& s, Interface& ui) {
     if (s.compraMaquina(tipo, pos, dir)) ui.mostraFabrica();
     else ui.mostraErro(s.getErro());

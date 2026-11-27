@@ -15,7 +15,7 @@ Silo::~Silo() {
 }
 
 bool Silo::recebe(Item* i) {
-    Item** aux = new Item*[n + 1];  // espaço para mais um
+    Item** aux = new Item*[n + 1];  // Mem Din ->  espaço para mais um (copia, apaga o antigo, usa ao novo)
     for (int k = 0; k < n; k++)
         aux[k] = itens[k];
     aux[n] = i;  // o novo fica no fim
@@ -34,9 +34,9 @@ void Silo::tiraMaisAntigo() {
         itensNovos = 0;
         return;
     }
-    Item** aux = new Item*[n - 1];  // ajusta o espaço para menos um
+    Item** aux = new Item*[n - 1];  // Mem Din - ajusta o espaço para menos um
     for (int k = 1; k < n; k++)
-        aux[k - 1] = itens[k];
+        aux[k - 1] = itens[k]; // remove + antigo
     delete[] itens;
     itens = aux;
     n--;

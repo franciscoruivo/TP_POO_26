@@ -4,6 +4,8 @@
 #include "LeitorComandos.h"
 using namespace std;
 
+// Mem Din - cria + apaga cmd
+// Tbm vai criar e apagar os comandos para buscar a sintaxe e ajuda
 ComandoAjuda::ComandoAjuda(const string& l) : Comando(l) {}
 
 bool ComandoAjuda::valida() {

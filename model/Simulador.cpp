@@ -14,7 +14,7 @@ bool Simulador::criaFabrica(int nl, int nc) {
         return false;
     }
     try {
-        fabrica = new Fabrica(nl, nc);
+        fabrica = new Fabrica(nl, nc); // Mem Din -> criação da fábrica aleatória
     } catch (const invalid_argument& e) {
         erro = e.what();
         return false;
@@ -28,7 +28,7 @@ bool Simulador::carregaFabrica(const string& ficheiro) {
         return false;
     }
     try {
-        fabrica = new Fabrica(ficheiro);
+        fabrica = new Fabrica(ficheiro); // Mem Din -> criação da fábrica a partir de um txt
     } catch (const invalid_argument& e) {
         erro = e.what();
         return false;

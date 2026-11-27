@@ -35,11 +35,11 @@ void Interface::processaLinha(const string& linha) {
         mostraErro("Comando desconhecido (escreva ajuda para ver os comandos)");
         return;
     }
-    if (comando->valida())
+    if (comando->valida()) // Validação -> se true -> executa
         comando->executa(simulador, *this);
     else
-        mostraErro(comando->getErro());
-    delete comando;
+        mostraErro(comando->getErro()); // Escreve o erro na consola
+    delete comando;  // Mem Din -> Responsável por apagar cmd
 }
 
 bool Interface::executaFicheiro(const string& nome) {

@@ -94,6 +94,7 @@ void Fabrica::inicia() {
         enviados[i] = 0;
 }
 
+// Mem Dinâmica -> delete de td as máq
 Fabrica::~Fabrica() {
     for (int l = 0; l < Settings::fabrica_max_linhas; l++)
         for (int c = 0; c < Settings::fabrica_max_colunas; c++)
@@ -132,6 +133,8 @@ char Fabrica::getSimboloPosicao(const Coordenada& c) const {
     return celula.getSimbolo();
 }
 
+// Array de máq -> 2D com tam fixo de ptr.
+// Memória Dinâmica -> máquinas apontadas pelo array
 Maquina* Fabrica::criaMaquina(char tipo, char dir) const {
     if (tipo == 'p') return new Perfuradora(dir);
     if (tipo == 't') return new Transportador(dir);
@@ -232,17 +235,20 @@ void Fabrica::avancaInstante() {
     instante++;
     numEventos = 0;
 
+    // 1º - preparação das máq antes de trabalharem
+    // novoItem -> false -> assim entregam o que já tinham
     for (int l = 0; l < linhas; l++)
         for (int c = 0; c < colunas; c++)
-            if (maquinas[l][c] != nullptr) maquinas[l][c]->iniciaInstante();
+            if (maquinas[l][c] != nullptr) maquinas[l][c]->iniciaInstante(); // chamada feita em td as máq
 
+    // 2º - cada máq atua, uma de cada vez
     for (int l = 0; l < linhas; l++) {
         for (int c = 0; c < colunas; c++) {
             Maquina* m = maquinas[l][c];
-            if (m == nullptr) continue;
-            bool eraDeposito = Celula::tipoDeposito(grelha[l][c].getTipo());
-            m->atua(*this, grelha[l][c], vizinha(l, c, m->getDirecao()));
-            if (eraDeposito && grelha[l][c].getTipo() == Solo)
+            if (m == nullptr) continue; // s/ máq
+            bool eraDeposito = Celula::tipoDeposito(grelha[l][c].getTipo()); // retém se terreno era depósito antes da máq atuar
+            m->atua(*this, grelha[l][c], vizinha(l, c, m->getDirecao())); // Polimorf -> cd máq faz o seu "atua()"
+            if (eraDeposito && grelha[l][c].getTipo() == Solo) // se era dep e passou a solo -> esgotado
                 registaEvento("deposito esgotado em " + Coordenada(l, c).obterTexto());
         }
     }

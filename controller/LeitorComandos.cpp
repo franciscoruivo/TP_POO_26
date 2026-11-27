@@ -23,6 +23,7 @@ const string nomesComandos[LeitorComandos::numComandos] = {
     "ajuda", "fabrica", "carrega", "executa", "avanca", "compra", "vende", "roda", "melhora", "contrata", "atribui", "despede", "estado", "lposicao", "grava", "recupera", "fim"
 };
 
+// Mem Din - Criação dos comandos (delete -> interface/processaLinha)
 Comando* LeitorComandos::criaPorNome(const string& nome, const string& linha) const {
     if (nome == "ajuda") return new ComandoAjuda(linha);
     if (nome == "fabrica") return new ComandoFabrica(linha);

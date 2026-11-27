@@ -27,8 +27,8 @@ public:
     static bool direcaoValida(char d);
     static bool tipoValido(char t);
 
-    virtual char getSimbolo() const = 0;
-    virtual std::string getNome() const = 0;
+    virtual char getSimbolo() const = 0; // Virtual  Pura -> classe abstrata; derivadas implementam
+    virtual std::string getNome() const = 0; // """" """ """ """
     virtual bool recebe(Item* item) = 0;  // true -> a máquina aceitou o item (passa a ser dela)
     virtual void atua(Fabrica& f, Celula& terreno, Maquina* destino) = 0;  // chamada em cada instante
     virtual void iniciaInstante();
