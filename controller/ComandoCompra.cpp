@@ -6,7 +6,7 @@ using namespace std;
 
 ComandoCompra::ComandoCompra(const string& l) : Comando(l), tipo(' '), dir(' ') {}
 
-// Sintaxe + formato dos parâmetros (cd cmd tem a sua)
+// Verifica sintaxe (tipo, coord, direção e s/ parâmetros a mais) + Guarda valores
 bool ComandoCompra::valida() {
     istringstream in(linha);
     string cmd;
@@ -19,7 +19,7 @@ bool ComandoCompra::valida() {
     return leCoordenada(in, pos) && leDirecao(in, dir) && semMaisParametros(in);
 }
 
-// Validação das regras - pos ocupada, cratera, créditos insuficientes... (cd cmd tem a sua)
+// Faz o que o cmd pede através do simulador (só acontece se valida() -> true)
 void ComandoCompra::executa(Simulador& s, Interface& ui) {
     if (s.compraMaquina(tipo, pos, dir)) ui.mostraFabrica();
     else ui.mostraErro(s.getErro());
